@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "damageincorporated",
+  "version": "${version}",
+  "name": "Damage Incorporated",
+  "description": "Allows for more control on mob destruction.",
+  "authors": ["boredomh1"],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/",
+    "sources": "https://github.com/"
+  },
+  "license": "MIT",
+  "icon": "assets/damageincorporated/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.joaoh1.damageincorporated.DamageIncorporatedMod"
+    ]
+  },
+  "accessWidener": "damageincorporated.accesswidener",
+  "mixins": [
+    "damageincorporated.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.9.0",
+    "fabric": ">=0.16.0",
+    "minecraft": ">=1.16.0"
+  }
+}

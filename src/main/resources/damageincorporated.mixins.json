@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "package": "io.github.joaoh1.damageincorporated.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "CallForHelpGoalMixin",
+    "CreeperEntityMixin",
+    "FarmlandBlockMixin",
+    "FireballEntityMixin",
+    "PickUpBlockGoalMixin",
+    "PlaceBlockGoalMixin",
+    "SnowGolemEntityMixin",
+    "WanderAndInfestGoalMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
