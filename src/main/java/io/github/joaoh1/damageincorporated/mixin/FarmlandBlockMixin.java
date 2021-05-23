@@ -22,7 +22,11 @@ public class FarmlandBlockMixin extends Block {
 		super(settings);
 	}
 
-	@Inject(at = @At("HEAD"), method = "onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V", cancellable = true)
+	@Inject(
+		at = @At("HEAD"),
+		method = "onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V",
+		cancellable = true
+	)
 	private void onLandedUponMixin(World world, BlockPos pos, Entity entity, float distance, CallbackInfo info) {
 		FARMLAND_TRAMPLING_ENUM gameRuleValue = world.getGameRules().get(DamageIncorporatedMod.FARMLAND_TRAMPLING_RULE).get();
 		if (gameRuleValue.equals(FARMLAND_TRAMPLING_ENUM.OFF)) {

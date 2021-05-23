@@ -26,7 +26,7 @@ public class SnowGolemEntityMixin extends GolemEntity {
 		cancellable = true
 	)
 	private void disableSnowGolemSnowPath(CallbackInfo ci) {
-		if (!this.world.getGameRules().getBoolean(DamageIncorporatedMod.SNOW_GOLEM_TRAIL)) {
+		if (!this.world.getGameRules().getBoolean(DamageIncorporatedMod.SNOW_GOLEM_TRAIL_RULE)) {
 			ci.cancel();
 		}
 	}

@@ -32,10 +32,10 @@ public class CreeperEntityMixin extends HostileEntity {
 		if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
 			if (!this.shouldRenderOverlay()) {
 				//Handle the creeperDestructionType game rule
-				return this.world.getGameRules().get(DamageIncorporatedMod.CREEPER_DESTRUCTION_TYPE_RULE).get();
+				return DamageIncorporatedMod.translateDestructionDrops(this.world.getGameRules().get(DamageIncorporatedMod.CREEPER_DESTRUCTION_TYPE_RULE).get());
 			} else {
 				//Handle the chargedCreeperDestructionType game rule
-				return this.world.getGameRules().get(DamageIncorporatedMod.CHARGED_CREEPER_DESTRUCTION_TYPE_RULE).get();
+				return DamageIncorporatedMod.translateDestructionDrops(this.world.getGameRules().get(DamageIncorporatedMod.CHARGED_CREEPER_DESTRUCTION_TYPE_RULE).get());
 			}
 		} else {
 			return originalDestructionType;

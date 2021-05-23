@@ -13,7 +13,7 @@ import net.minecraft.entity.mob.SilverfishEntity;
 
 @Mixin(SilverfishEntity.WanderAndInfestGoal.class)
 public class WanderAndInfestGoalMixin extends WanderAroundGoal {
-	public WanderAndInfestGoalMixin(PathAwareEntity mob, double speed) {
+	private WanderAndInfestGoalMixin(PathAwareEntity mob, double speed) {
 		super(mob, speed);
 	}
 
@@ -25,7 +25,7 @@ public class WanderAndInfestGoalMixin extends WanderAroundGoal {
 		method = "canStart",
 		cancellable = true
 	)
-	public void canStartMixin(CallbackInfoReturnable<Boolean> cir) {
+	private void canStartMixin(CallbackInfoReturnable<Boolean> cir) {
 		boolean returnedValue = cir.getReturnValueZ();
 		if (returnedValue && this.canInfest) {
 			if (!this.mob.world.getGameRules().getBoolean(DamageIncorporatedMod.CAN_SILVERFISH_INFEST_BLOCKS_RULE)) {

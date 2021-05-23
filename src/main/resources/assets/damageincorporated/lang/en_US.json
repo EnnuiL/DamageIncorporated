@@ -8,5 +8,7 @@
     "gamerule.fireballDestructionType": "Fireball destruction type",
     "gamerule.canFireballsSpreadFire": "Allow fireballs to spread fire",
     "gamerule.canSilverfishInfestBlocks": "Allow silverfish to infest blocks",
-    "gamerule.permanentInfestedBlockDamage": "Permanent infested block damage"
+    "gamerule.permanentInfestedBlockDamage": "Permanent infested block damage",
+    "gamerule.snowGolemTrail": "Snow golem trail",
+    "gamerule.canMobsPickUpLoot": "Allow mobs to pick up loot"
 }
