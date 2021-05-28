@@ -1,5 +1,6 @@
 package io.github.joaoh1.damageincorporated;
 
+import io.github.joaoh1.damageincorporated.utils.DamageIncorporatedUtils.DestructionDrops;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.gamerule.v1.CustomGameRuleCategory;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
@@ -9,29 +10,8 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.GameRules.BooleanRule;
-import net.minecraft.world.explosion.Explosion.DestructionType;
 
 public class DamageIncorporatedMod implements ModInitializer {
-	//TODO - Move this to an Utils class
-	public static enum DestructionDrops {
-		DISABLED,
-		LOSSLESS,
-		LOSSY
-	};
-
-	public static DestructionType translateDestructionDrops(DestructionDrops destructionDrops) {
-		switch (destructionDrops) {
-			case DISABLED:
-				return DestructionType.NONE;
-			case LOSSLESS:
-				return DestructionType.BREAK;
-			case LOSSY:
-				return DestructionType.DESTROY;
-			default:
-				return DestructionType.NONE;
-		}
-	}
-
 	public static CustomGameRuleCategory DAMAGE_INCORPORATED_CATEGORY = new CustomGameRuleCategory(
 		new Identifier("damageincorporated", "gamerules"),
 		new TranslatableText("damageincorporated.gamerule.category")

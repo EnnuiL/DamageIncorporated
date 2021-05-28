@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 import io.github.joaoh1.damageincorporated.DamageIncorporatedMod;
+import io.github.joaoh1.damageincorporated.utils.DamageIncorporatedUtils;
 
 @Mixin(FireballEntity.class)
 public class FireballEntityMixin extends AbstractFireballEntity {
@@ -29,7 +30,7 @@ public class FireballEntityMixin extends AbstractFireballEntity {
 	private void modifyExplosion(Args args) {
 		if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
 			args.set(5, this.world.getGameRules().get(DamageIncorporatedMod.CAN_FIREBALLS_SPREAD_FIRE_RULE).get());
-			args.set(6, this.world.getGameRules().get(DamageIncorporatedMod.FIREBALL_DESTRUCTION_TYPE_RULE).get());
+			args.set(6, DamageIncorporatedUtils.translateDestructionDrops(this.world.getGameRules().get(DamageIncorporatedMod.FIREBALL_DESTRUCTION_TYPE_RULE).get()));
 		}
 	}
 }
