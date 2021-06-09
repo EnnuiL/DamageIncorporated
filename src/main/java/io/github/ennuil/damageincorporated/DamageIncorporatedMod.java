@@ -1,6 +1,6 @@
-package io.github.joaoh1.damageincorporated;
+package io.github.ennuil.damageincorporated;
 
-import io.github.joaoh1.damageincorporated.utils.DamageIncorporatedUtils.DestructionDrops;
+import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils.DestructionDrops;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.gamerule.v1.CustomGameRuleCategory;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;

@@ -1,11 +1,11 @@
-package io.github.joaoh1.damageincorporated.mixin;
+package io.github.ennuil.damageincorporated.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import io.github.joaoh1.damageincorporated.DamageIncorporatedMod;
+import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.GolemEntity;
 import net.minecraft.entity.passive.SnowGolemEntity;

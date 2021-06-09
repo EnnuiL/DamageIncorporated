@@ -1,4 +1,4 @@
-package io.github.joaoh1.damageincorporated.mixin;
+package io.github.ennuil.damageincorporated.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import io.github.joaoh1.damageincorporated.DamageIncorporatedMod;
+import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
 import net.minecraft.entity.ai.goal.WanderAroundGoal;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.mob.SilverfishEntity;

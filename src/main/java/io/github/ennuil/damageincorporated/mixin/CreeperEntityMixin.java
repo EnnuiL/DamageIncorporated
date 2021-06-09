@@ -1,4 +1,4 @@
-package io.github.joaoh1.damageincorporated.mixin;
+package io.github.ennuil.damageincorporated.mixin;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.CreeperEntity;
@@ -12,8 +12,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-import io.github.joaoh1.damageincorporated.DamageIncorporatedMod;
-import io.github.joaoh1.damageincorporated.utils.DamageIncorporatedUtils;
+import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
+import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils;
 
 @Mixin(CreeperEntity.class)
 public class CreeperEntityMixin extends HostileEntity {

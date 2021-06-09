@@ -1,7 +1,7 @@
 {
   "required": true,
-  "package": "io.github.joaoh1.damageincorporated.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "package": "io.github.ennuil.damageincorporated.mixin",
+  "compatibilityLevel": "JAVA_16",
   "mixins": [
     "CallForHelpGoalMixin",
     "CreeperEntityMixin",

@@ -1,4 +1,4 @@
-package io.github.joaoh1.damageincorporated.mixin;
+package io.github.ennuil.damageincorporated.mixin;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.AbstractFireballEntity;
@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-import io.github.joaoh1.damageincorporated.DamageIncorporatedMod;
-import io.github.joaoh1.damageincorporated.utils.DamageIncorporatedUtils;
+import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
+import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils;
 
 @Mixin(FireballEntity.class)
 public class FireballEntityMixin extends AbstractFireballEntity {

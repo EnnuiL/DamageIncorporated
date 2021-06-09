@@ -1,4 +1,4 @@
-package io.github.joaoh1.damageincorporated.mixin;
+package io.github.ennuil.damageincorporated.mixin;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-import io.github.joaoh1.damageincorporated.DamageIncorporatedMod;
+import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
 import net.minecraft.entity.mob.SilverfishEntity;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.GameRules.BooleanRule;

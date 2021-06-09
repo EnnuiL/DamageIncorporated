@@ -1,5 +1,5 @@
 accessWidener	v1	named
 accessible	class	net/minecraft/entity/mob/EndermanEntity$PickUpBlockGoal
 accessible	class	net/minecraft/entity/mob/EndermanEntity$PlaceBlockGoal
-accessible  class   net/minecraft/entity/mob/SilverfishEntity$WanderAndInfestGoal
-accessible  class   net/minecraft/entity/mob/SilverfishEntity$CallForHelpGoal
+accessible	class	net/minecraft/entity/mob/SilverfishEntity$WanderAndInfestGoal
+accessible	class	net/minecraft/entity/mob/SilverfishEntity$CallForHelpGoal

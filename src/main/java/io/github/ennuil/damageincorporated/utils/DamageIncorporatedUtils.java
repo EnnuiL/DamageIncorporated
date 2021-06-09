@@ -1,4 +1,4 @@
-package io.github.joaoh1.damageincorporated.utils;
+package io.github.ennuil.damageincorporated.utils;
 
 import net.minecraft.world.explosion.Explosion.DestructionType;
 
