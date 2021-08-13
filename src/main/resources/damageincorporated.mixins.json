@@ -11,7 +11,9 @@
     "PickUpBlockGoalMixin",
     "PlaceBlockGoalMixin",
     "SnowGolemEntityMixin",
-    "WanderAndInfestGoalMixin"
+    "WanderAndInfestGoalMixin",
+    "WitherEntityMixin",
+    "WitherSkullEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

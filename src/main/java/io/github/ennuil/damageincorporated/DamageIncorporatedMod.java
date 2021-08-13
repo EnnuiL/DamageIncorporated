@@ -28,6 +28,10 @@ public class DamageIncorporatedMod implements ModInitializer {
 	public static GameRules.Key<BooleanRule> PERMANENT_INFESTED_BLOCK_DAMAGE_RULE;
 	public static GameRules.Key<BooleanRule> SNOW_GOLEM_TRAIL_RULE;
 	public static GameRules.Key<BooleanRule> CAN_MOBS_PICK_UP_LOOT_RULE;
+	public static GameRules.Key<EnumRule<DestructionDrops>> WITHER_SPAWN_DESTRUCTION_TYPE_RULE;
+	public static GameRules.Key<BooleanRule> CAN_WITHER_BREAK_BLOCKS_RULE;
+	public static GameRules.Key<EnumRule<DestructionDrops>> WITHER_SKULL_DESTRUCTION_TYPE_RULE;
+	public static GameRules.Key<BooleanRule> CAN_WITHER_ROSE_BE_PLANTED_RULE;
 	public static enum FARMLAND_TRAMPLING_ENUM {
 		ALL,
 		PLAYER,
@@ -48,5 +52,9 @@ public class DamageIncorporatedMod implements ModInitializer {
 		PERMANENT_INFESTED_BLOCK_DAMAGE_RULE = GameRuleRegistry.register("permanentInfestedBlockDamage", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		SNOW_GOLEM_TRAIL_RULE = GameRuleRegistry.register("snowGolemTrail", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_MOBS_PICK_UP_LOOT_RULE = GameRuleRegistry.register("canMobsPickUpLoot", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
+		WITHER_SPAWN_DESTRUCTION_TYPE_RULE = GameRuleRegistry.register("witherSpawnDestructionType", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createEnumRule(DestructionDrops.LOSSY));
+		CAN_WITHER_BREAK_BLOCKS_RULE = GameRuleRegistry.register("canWitherBreakBlocks", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
+		WITHER_SKULL_DESTRUCTION_TYPE_RULE = GameRuleRegistry.register("witherSkullDestructionType", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createEnumRule(DestructionDrops.LOSSY));
+		CAN_WITHER_ROSE_BE_PLANTED_RULE = GameRuleRegistry.register("canWitherRoseBePlanted", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 	}
 }
