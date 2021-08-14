@@ -33,6 +33,8 @@ public class DamageIncorporatedMod implements ModInitializer {
 	public static GameRules.Key<EnumRule<DestructionDrops>> WITHER_SKULL_DESTRUCTION_TYPE_RULE;
 	public static GameRules.Key<BooleanRule> CAN_WITHER_ROSE_BE_PLANTED_RULE;
 	public static GameRules.Key<BooleanRule> CAN_EVOKERS_RECOLOR_BLUE_SHEEP_RULE;
+	public static GameRules.Key<BooleanRule> CAN_SHEEP_BREAK_GRASS_RULE;
+	public static GameRules.Key<BooleanRule> CAN_SHEEP_TURN_GRASS_BLOCKS_INTO_DIRT_RULE;
 	public static enum FARMLAND_TRAMPLING_ENUM {
 		ALL,
 		PLAYER,
@@ -58,5 +60,7 @@ public class DamageIncorporatedMod implements ModInitializer {
 		WITHER_SKULL_DESTRUCTION_TYPE_RULE = GameRuleRegistry.register("witherSkullDestructionType", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createEnumRule(DestructionDrops.LOSSY));
 		CAN_WITHER_ROSE_BE_PLANTED_RULE = GameRuleRegistry.register("canWitherRoseBePlanted", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_EVOKERS_RECOLOR_BLUE_SHEEP_RULE = GameRuleRegistry.register("canEvokersRecolorBlueSheep", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
+		CAN_SHEEP_BREAK_GRASS_RULE = GameRuleRegistry.register("canSheepBreakGrass", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
+		CAN_SHEEP_TURN_GRASS_BLOCKS_INTO_DIRT_RULE = GameRuleRegistry.register("canSheepTurnGrassBlocksIntoDirt", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 	}
 }
