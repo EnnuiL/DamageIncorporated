@@ -13,7 +13,8 @@
     "SnowGolemEntityMixin",
     "WanderAndInfestGoalMixin",
     "WitherEntityMixin",
-    "WitherSkullEntityMixin"
+    "WitherSkullEntityMixin",
+    "WololoGoalMixin"
   ],
   "injectors": {
     "defaultRequire": 1

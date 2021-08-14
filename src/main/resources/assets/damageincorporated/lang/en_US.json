@@ -9,6 +9,9 @@
     "gamerule.chargedCreeperDestructionType.lossy": "Lossy",
     "gamerule.chargedCreeperDestructionType.lossless": "Lossless",
     "gamerule.farmlandTrampling": "Farmland trampling",
+    "gamerule.farmlandTrampling.all": "All entities",
+    "gamerule.farmlandTrampling.player": "Player-only",
+    "gamerule.farmlandTrampling.off": "Off",
     "gamerule.canEndermenPickBlocks": "Allow endermen to pick blocks",
     "gamerule.canEndermenPlaceBlocks": "Allow endermen to place blocks",
     "gamerule.fireballDestructionType": "Fireball destruction type",
@@ -29,5 +32,6 @@
     "gamerule.witherSkullDestructionType.disabled": "Disabled",
     "gamerule.witherSkullDestructionType.lossy": "Lossy",
     "gamerule.witherSkullDestructionType.lossless": "Lossless",
-    "gamerule.canWitherRoseBePlanted": "Allow wither victims to plant wither rose"
+    "gamerule.canWitherRoseBePlanted": "Allow wither victims to plant wither rose",
+    "gamerule.canEvokersRecolorBlueSheep": "Allow evokers to recolor blue sheep"
 }
