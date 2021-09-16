@@ -6,26 +6,26 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
-import net.minecraft.entity.mob.EvokerEntity;
+import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.GameRules.BooleanRule;
 import net.minecraft.world.GameRules.Key;
 
-@Mixin(EvokerEntity.WololoGoal.class)
-public abstract class WololoGoalMixin {
-	@Shadow(aliases = "field_7268")
-	private EvokerEntity field_7268;
+@Mixin(FoxEntity.EatSweetBerriesGoal.class)
+public class EatSweetBerriesGoalMixin {
+    @Shadow(aliases = "field_17975")
+    private FoxEntity field_17975;
 
     @ModifyArg(
 		at = @At(
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"
 		),
-		method = "canStart"
+		method = "eatSweetBerry()V"
 	)
-	private Key<BooleanRule> modifyGameRule(Key<BooleanRule> originalRule) {
-		if (field_7268.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
-			return DamageIncorporatedMod.CAN_EVOKERS_WOLOLO_RULE;
+	private Key<BooleanRule> modifyFoxGoalsGameRuleArg(Key<BooleanRule> originalRule) {
+		if (field_17975.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
+			return DamageIncorporatedMod.CAN_FOXES_EAT_IN_WORLD_BERRIES_RULE;
 		}
 		return originalRule;
 	}

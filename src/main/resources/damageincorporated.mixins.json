@@ -5,7 +5,9 @@
   "mixins": [
     "CallForHelpGoalMixin",
     "CreeperEntityMixin",
+    "EatCarrotCropGoalMixin",
     "EatGrassGoalMixin",
+    "EatSweetBerriesGoalMixin",
     "FarmlandBlockMixin",
     "FireballEntityMixin",
     "MobEntityMixin",

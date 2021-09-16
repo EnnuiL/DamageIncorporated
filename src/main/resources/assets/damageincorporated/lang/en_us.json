@@ -33,7 +33,9 @@
     "gamerule.witherSkullDestructionType.lossy": "Lossy",
     "gamerule.witherSkullDestructionType.lossless": "Lossless",
     "gamerule.canWitherRoseBePlanted": "Allow wither victims to plant wither rose",
-    "gamerule.canEvokersRecolorBlueSheep": "Allow evokers to recolor blue sheep",
+    "gamerule.canEvokersWololo": "Allow evokers to cast the \"Wololo\" spell",
     "gamerule.canSheepBreakGrass": "Allow sheep to break grass",
-    "gamerule.canSheepTurnGrassBlocksIntoDirt": "Allow sheep to turn grass blocks into dirt"
+    "gamerule.canSheepTurnGrassBlocksIntoDirt": "Allow sheep to turn grass blocks into dirt",
+    "gamerule.canRabbitsEatCarrotCrops": "Allow rabbits to eat carrot crops",
+    "gamerule.canFoxesEatInWorldBerries": "Allow foxes to eat in-world berries"
 }
