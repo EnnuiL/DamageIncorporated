@@ -3,6 +3,5 @@ accessible	class	net/minecraft/entity/mob/EndermanEntity$PickUpBlockGoal
 accessible	class	net/minecraft/entity/mob/EndermanEntity$PlaceBlockGoal
 accessible	class	net/minecraft/entity/mob/SilverfishEntity$WanderAndInfestGoal
 accessible	class	net/minecraft/entity/mob/SilverfishEntity$CallForHelpGoal
-accessible	class	net/minecraft/entity/mob/RabbitEntity$EatCarrotCropGoal
 accessible	class	net/minecraft/entity/passive/RabbitEntity$EatCarrotCropGoal
 accessible	class	net/minecraft/entity/passive/FoxEntity$EatSweetBerriesGoal
