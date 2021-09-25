@@ -21,14 +21,11 @@ public class PickUpBlockGoalMixin {
 		method = "canStart",
 		cancellable = true
 	)
-	private boolean controlEndermanPickUp(CallbackInfoReturnable<Boolean> cir) {
-		boolean returnedValue = cir.getReturnValueZ();
-		if (returnedValue) {
+	private void controlEndermanPickUp(CallbackInfoReturnable<Boolean> cir) {
+		if (cir.getReturnValueZ()) {
 			if (!this.enderman.world.getGameRules().getBoolean(DamageIncorporatedMod.CAN_ENDERMEN_PICK_BLOCKS_RULE)) {
 				cir.setReturnValue(false);
-				return false;
 			}   
 		}
-		return returnedValue;
 	}
 }

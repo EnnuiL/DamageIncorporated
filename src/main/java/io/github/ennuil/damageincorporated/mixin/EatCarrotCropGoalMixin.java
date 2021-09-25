@@ -24,12 +24,9 @@ public class EatCarrotCropGoalMixin {
 		method = "canStart()Z",
 		cancellable = true
 	)
-	private boolean controlRabbitCarrotEating(CallbackInfoReturnable<Boolean> cir) {
+	private void controlRabbitCarrotEating(CallbackInfoReturnable<Boolean> cir) {
 		if (!this.rabbit.world.getGameRules().getBoolean(DamageIncorporatedMod.CAN_RABBITS_EAT_CARROT_CROPS_RULE)) {
             cir.setReturnValue(false);
-            return false;
         }
-
-		return cir.getReturnValueZ();
 	}
 }
