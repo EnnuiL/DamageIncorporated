@@ -42,6 +42,7 @@ public class DamageIncorporatedMod implements ModInitializer {
 	public static GameRules.Key<BooleanRule> CAN_ZOMBIFIED_PIGLINS_BREAK_TURTLE_EGGS;
 	public static GameRules.Key<BooleanRule> CAN_HUSKS_BREAK_TURTLE_EGGS;
 	public static GameRules.Key<BooleanRule> CAN_ZOMBIE_VILLAGERS_BREAK_TURTLE_EGGS;
+	public static GameRules.Key<BooleanRule> CAN_MOBS_ON_FIRE_DESTROY_POWDER_SNOW_BLOCKS;
 	public static enum FARMLAND_TRAMPLING_ENUM {
 		ALL,
 		PLAYER,
@@ -73,9 +74,9 @@ public class DamageIncorporatedMod implements ModInitializer {
 		CAN_FOXES_EAT_IN_WORLD_BERRIES_RULE = GameRuleRegistry.register("canFoxesEatInWorldBerries", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_ZOMBIES_BREAK_TURTLE_EGGS = GameRuleRegistry.register("canZombiesBreakTurtleEggs", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_DROWNEDS_BREAK_TURTLE_EGGS = GameRuleRegistry.register("canDrownedBreakTurtleEggs", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
-		//CAN_SKELENTONS_BREAK_TURTLE_EGGS = GameRuleRegistry.register("canSkeletonsBreakTurtleEggs", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_ZOMBIFIED_PIGLINS_BREAK_TURTLE_EGGS = GameRuleRegistry.register("canZombifiedPiglinsBreakTurtleEggs", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_ZOMBIE_VILLAGERS_BREAK_TURTLE_EGGS = GameRuleRegistry.register("canZombieVillagersBreakTurtleEggs", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_HUSKS_BREAK_TURTLE_EGGS = GameRuleRegistry.register("canHusksBreakTurtleEggs", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
+		CAN_MOBS_ON_FIRE_DESTROY_POWDER_SNOW_BLOCKS = GameRuleRegistry.register("canMobsOnFireDestroyPowderSnowBlocks",DAMAGE_INCORPORATED_CATEGORY,GameRuleFactory.createBooleanRule(true));
 	}
 }

@@ -13,6 +13,7 @@
     "MobEntityMixin",
     "PickUpBlockGoalMixin",
     "PlaceBlockGoalMixin",
+    "PowderSnowBlockMixin",
     "SnowGolemEntityMixin",
     "StepAndDestroyBlockGoalMixin",
     "WanderAndInfestGoalMixin",
