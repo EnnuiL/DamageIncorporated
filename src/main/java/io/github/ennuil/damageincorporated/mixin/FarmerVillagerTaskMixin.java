@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
 import net.minecraft.entity.ai.brain.task.FarmerVillagerTask;
@@ -23,7 +24,7 @@ public class FarmerVillagerTaskMixin {
 		at = @At("HEAD"),
 		method = "shouldRun(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/passive/VillagerEntity;)Z"
 	)
-	private void getOnLandedUponArgs(ServerWorld serverWorld, VillagerEntity villagerEntity, CallbackInfo info) {
+	private void getOnLandedUponArgs(ServerWorld serverWorld, VillagerEntity villagerEntity, CallbackInfoReturnable<Boolean> cir) {
 		this.storedServerWorld = serverWorld;
 	}
 

@@ -11,6 +11,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.AbstractPiglinEntity;
 import net.minecraft.entity.mob.PiglinActivity;
 import net.minecraft.entity.mob.PiglinEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 @Mixin(PiglinEntity.class)
@@ -21,10 +22,10 @@ public class PiglinEntityMixin extends AbstractPiglinEntity {
 
 	@Inject(
 		at = @At("RETURN"),
-		method = "canStart()Z",
+		method = "canGather(Lnet/minecraft/item/ItemStack;)Z",
 		cancellable = true
 	)
-	private void controlPiglinGather(CallbackInfoReturnable<Boolean> cir) {
+	private void controlPiglinGather(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
 		if (cir.getReturnValueZ()) {
 			if (!this.world.getGameRules().getBoolean(DamageIncorporatedMod.CAN_PIGLINS_GATHER_RULE)) {
 				cir.setReturnValue(false);

@@ -19,7 +19,7 @@
     "PiglinEntityMixin",
     "PlaceBlockGoalMixin",
     "PowderSnowBlockMixin",
-    "ProjectileEntiyMixin",
+    "ProjectileEntityMixin",
     "RavagerEntityMixin",
     "SmallFireballEntityMixin",
     "SnowGolemEntityMixin",

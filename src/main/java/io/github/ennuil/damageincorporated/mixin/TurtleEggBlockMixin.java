@@ -5,7 +5,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
 import net.minecraft.block.TurtleEggBlock;
@@ -23,7 +23,7 @@ public class TurtleEggBlockMixin {
 		at = @At("HEAD"),
 		method = "breaksEgg(Lnet/minecraft/world/World;Lnet/minecraft/entity/Entity;)Z"
 	)
-	private void getOnLandedUponArgs(World world, Entity entity, CallbackInfo info) {
+	private void getOnLandedUponArgs(World world, Entity entity, CallbackInfoReturnable<Boolean> cir) {
 		this.storedWorld = world;
 	}
 

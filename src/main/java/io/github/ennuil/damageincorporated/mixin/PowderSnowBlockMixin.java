@@ -25,7 +25,7 @@ public class PowderSnowBlockMixin {
 		at = @At("HEAD"),
 		method = "onEntityCollision(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V"
 	)
-	private void getOnEntityCollisionArgs(BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo info) {
+	private void getOnEntityCollisionArgs(BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo ci) {
 		this.storedWorld = world;
 	}
 

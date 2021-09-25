@@ -5,7 +5,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
 import net.minecraft.entity.projectile.ProjectileEntity;
@@ -23,7 +23,7 @@ public class ProjectileEntityMixin {
 		at = @At("HEAD"),
 		method = "canModifyAt(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)Z"
 	)
-	private void getCanModifyAtArgs(World world, BlockPos pos, CallbackInfo info) {
+	private void getCanModifyAtArgs(World world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
 		this.storedWorld = world;
 	}
 
@@ -32,7 +32,7 @@ public class ProjectileEntityMixin {
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"
 		),
-		method = "onEntityCollision(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V"
+		method = "canModifyAt(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)Z"
 	)
 	private Key<BooleanRule> modifyProjectileGameRule(Key<BooleanRule> originalRule) {
 		if (this.storedWorld.getGameRules().getBoolean(originalRule)) {

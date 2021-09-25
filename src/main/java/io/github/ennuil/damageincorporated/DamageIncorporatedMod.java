@@ -79,11 +79,11 @@ public class DamageIncorporatedMod implements ModInitializer {
 		CAN_ZOMBIFIED_PIGLINS_TARGET_TURTLE_EGGS_RULE = GameRuleRegistry.register("canZombifiedPiglinsTargetTurtleEggs", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_ZOMBIE_VILLAGERS_TARGET_TURTLE_EGGS_RULE = GameRuleRegistry.register("canZombieVillagersTargetTurtleEggs", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_HUSKS_TARGET_TURTLE_EGGS_RULE = GameRuleRegistry.register("canHusksTargetTurtleEggs", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
-		CAN_DROWNEDS_TARGET_TURTLE_EGGS_RULE = GameRuleRegistry.register("canDrownedTargetTurtleEggs", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
+		CAN_DROWNEDS_TARGET_TURTLE_EGGS_RULE = GameRuleRegistry.register("canDrownedsTargetTurtleEggs", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_MOBS_BREAK_TURTLE_EGGS_RULE = GameRuleRegistry.register("canMobsBreakTurtleEggs", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
-		CAN_BURNING_MOBS_BREAK_POWDER_SNOW_RULE = GameRuleRegistry.register("canBurningMobsTargetPowderSnow", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
-		CAN_RAVAGERS_BREAK_LEAVES_RULE = GameRuleRegistry.register("canRavagersTargetLeaves", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
-		CAN_RAVAGERS_BREAK_CROPS_RULE = GameRuleRegistry.register("canRavagersTargetCrops", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
+		CAN_BURNING_MOBS_BREAK_POWDER_SNOW_RULE = GameRuleRegistry.register("canBurningMobsBreakPowderSnow", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
+		CAN_RAVAGERS_BREAK_LEAVES_RULE = GameRuleRegistry.register("canRavagersBreakLeaves", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
+		CAN_RAVAGERS_BREAK_CROPS_RULE = GameRuleRegistry.register("canRavagersBreakCrops", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_MOBS_BREAK_DOORS_RULE = GameRuleRegistry.register("canMobsBreakDoors", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_ENDER_DRAGON_DESTROY_BLOCKS = GameRuleRegistry.register("canEnderDragonDestroyBlocks", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_PIGLINS_GATHER_RULE = GameRuleRegistry.register("canPiglinsGather", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));

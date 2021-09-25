@@ -1,11 +1,8 @@
 package io.github.ennuil.damageincorporated.mixin;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
@@ -38,7 +35,7 @@ public class CreeperEntityMixin extends HostileEntity {
 		at = @At("HEAD"),
 		method = "explode()V"
 	)
-	private void getExplodeArgs(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo info) {
+	private void getGameRuleValues(CallbackInfo ci) {
 		this.storedCreeperGameRuleValue = this.world.getGameRules().get(DamageIncorporatedMod.CREEPER_DESTRUCTION_TYPE_RULE).get();
 		this.storedChargedCreeperGameRuleValue = this.world.getGameRules().get(DamageIncorporatedMod.CHARGED_CREEPER_DESTRUCTION_TYPE_RULE).get();
 	}
@@ -50,7 +47,7 @@ public class CreeperEntityMixin extends HostileEntity {
 		),
 		method = "explode()V"
 	)
-	private Args modifyCreeperExplosion(Args args) {
+	private void modifyCreeperExplosion(Args args) {
 		if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
 			if (!this.shouldRenderOverlay()) {
 				if (this.storedCreeperGameRuleValue.equals(DamageIncDestructionType.NONE)) {
@@ -64,7 +61,6 @@ public class CreeperEntityMixin extends HostileEntity {
 				args.set(5, DamageIncorporatedUtils.translateDestructionDrops(this.storedChargedCreeperGameRuleValue));
 			}
 		}
-		return args;
 	}
 
 	@Shadow
