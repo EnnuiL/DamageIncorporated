@@ -1,60 +1,47 @@
 package io.github.ennuil.damageincorporated.mixin;
 
 import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.MoveToTargetPosGoal;
 import net.minecraft.entity.ai.goal.StepAndDestroyBlockGoal;
-import net.minecraft.entity.mob.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.WorldView;
+import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.world.GameRules.BooleanRule;
+import net.minecraft.world.GameRules.Key;
+
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(StepAndDestroyBlockGoal.class)
-public class StepAndDestroyBlockGoalMixin extends MoveToTargetPosGoal {
-    public StepAndDestroyBlockGoalMixin(PathAwareEntity mob, double speed, int range, MobEntity stepAndDestroyMob, Block targetBlock) {
-        super(mob, speed, range);
-        this.stepAndDestroyMob = stepAndDestroyMob;
-    }
+public class StepAndDestroyBlockGoalMixin {
+	@Shadow
+	@Final
+	private MobEntity stepAndDestroyMob;
 
-    @Shadow @Final
-    @Mutable
-    private final MobEntity stepAndDestroyMob;
-
-    @Redirect(
-            method = "canStart",
-            at = @At(value = "INVOKE",target = "Lnet/minecraft/world/GameRules;getBoolean(Lnet/minecraft/world/GameRules$Key;)Z", ordinal = 0)
-    )
-    private boolean redirectMobGriefing(GameRules gameRules, GameRules.Key<GameRules.BooleanRule> rule){
-        if(this.stepAndDestroyMob.getType() == EntityType.ZOMBIE
-                && !gameRules.getBoolean(DamageIncorporatedMod.CAN_ZOMBIES_BREAK_TURTLE_EGGS)){
-            return false;
-        }else if(this.stepAndDestroyMob.getType() == EntityType.ZOMBIFIED_PIGLIN
-                && !gameRules.getBoolean(DamageIncorporatedMod.CAN_ZOMBIFIED_PIGLINS_BREAK_TURTLE_EGGS)){
-            return false;
-        }else if(this.stepAndDestroyMob.getType() == EntityType.ZOMBIE_VILLAGER
-                && !gameRules.getBoolean(DamageIncorporatedMod.CAN_ZOMBIE_VILLAGERS_BREAK_TURTLE_EGGS)){
-            return false;
-        }else if(this.stepAndDestroyMob.getType() == EntityType.DROWNED
-                && !gameRules.getBoolean(DamageIncorporatedMod.CAN_DROWNEDS_BREAK_TURTLE_EGGS)){
-            return false;
-        }else if(this.stepAndDestroyMob.getType() == EntityType.HUSK
-                && !gameRules.getBoolean(DamageIncorporatedMod.CAN_HUSKS_BREAK_TURTLE_EGGS)){
-            return false;
-        }else {
-            return gameRules.getBoolean(GameRules.DO_MOB_GRIEFING);
-        }
-    }
-
-    @Shadow
-    protected boolean isTargetPos(WorldView world, BlockPos pos) {
-        return false;
-    }
+	@ModifyArg(
+		at = @At(
+			value = "INVOKE",
+			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"
+		),
+		method = "canStart()Z",
+		index = 0
+	)
+	private Key<BooleanRule> modifyStepAndDestroyGameRuleArg(Key<BooleanRule> originalRule) {
+		if (this.stepAndDestroyMob.world.getGameRules().getBoolean(originalRule)) {
+			EntityType<?> mobType = this.stepAndDestroyMob.getType();
+			if (mobType.equals(EntityType.ZOMBIE)) {
+				return DamageIncorporatedMod.CAN_ZOMBIES_TARGET_TURTLE_EGGS_RULE;
+			} else if (mobType.equals(EntityType.ZOMBIFIED_PIGLIN)) {
+				return DamageIncorporatedMod.CAN_ZOMBIFIED_PIGLINS_TARGET_TURTLE_EGGS_RULE;
+			} else if (mobType.equals(EntityType.ZOMBIE_VILLAGER)) {
+				return DamageIncorporatedMod.CAN_ZOMBIE_VILLAGERS_TARGET_TURTLE_EGGS_RULE;
+			} else if (mobType.equals(EntityType.DROWNED)) {
+				return DamageIncorporatedMod.CAN_DROWNEDS_TARGET_TURTLE_EGGS_RULE;
+			} else if (mobType.equals(EntityType.HUSK)) {
+				return DamageIncorporatedMod.CAN_HUSKS_TARGET_TURTLE_EGGS_RULE;
+			}
+		}
+		return originalRule;
+	}
 }

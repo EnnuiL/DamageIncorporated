@@ -12,21 +12,21 @@ import net.minecraft.entity.passive.RabbitEntity;
 
 @Mixin(RabbitEntity.EatCarrotCropGoal.class)
 public class EatCarrotCropGoalMixin {
-    @Shadow
-    @Final
-    private RabbitEntity rabbit;
+	@Shadow
+	@Final
+	private RabbitEntity rabbit;
 
-    @Inject(
+	@Inject(
 		at = @At(
-            value = "FIELD",
-            target = "Lnet/minecraft/entity/passive/RabbitEntity$EatCarrotCropGoal;hasTarget:Z"
-        ),
+			value = "FIELD",
+			target = "Lnet/minecraft/entity/passive/RabbitEntity$EatCarrotCropGoal;hasTarget:Z"
+		),
 		method = "canStart()Z",
 		cancellable = true
 	)
 	private void controlRabbitCarrotEating(CallbackInfoReturnable<Boolean> cir) {
 		if (!this.rabbit.world.getGameRules().getBoolean(DamageIncorporatedMod.CAN_RABBITS_EAT_CARROT_CROPS_RULE)) {
-            cir.setReturnValue(false);
-        }
+			cir.setReturnValue(false);
+		}
 	}
 }

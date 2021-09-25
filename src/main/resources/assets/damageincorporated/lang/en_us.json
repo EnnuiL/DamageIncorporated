@@ -37,5 +37,17 @@
     "gamerule.canSheepBreakGrass": "Allow sheep to break grass",
     "gamerule.canSheepTurnGrassBlocksIntoDirt": "Allow sheep to turn grass blocks into dirt",
     "gamerule.canRabbitsEatCarrotCrops": "Allow rabbits to eat carrot crops",
-    "gamerule.canFoxesEatInWorldBerries": "Allow foxes to eat in-world berries"
+    "gamerule.canFoxesEatInWorldBerries": "Allow foxes to eat in-world berries",
+    "gamerule.canZombiesTargetTurtleEggs": "Allow zombies to target turtle eggs",
+    "gamerule.canZombifiedPiglinsTargetTurtleEggs": "Allow zombified piglins to target turtle eggs",
+    "gamerule.canZombieVillagersTargetTurtleEggs": "Allow zombie villagers to target turtle eggs",
+    "gamerule.canHusksTargetTurtleEggs": "Allow husks to target turtle eggs",
+    "gamerule.canMobsBreakTurtleEggs": "Allow all mobs to break turtle eggs",
+    "gamerule.canRavagersBreakLeaves": "Allow ravagers to break leaves",
+    "gamerule.canRavagersBreakCrops": "Allow ravagers to break crops",
+    "gamerule.canMobsBreakDoors": "Allow mobs to break doors",
+    "gamerule.canEnderDragonDestroyBlocks": "Allow the Ender Dragon to destroy blocks",
+    "gamerule.canPiglinsGather": "Allow piglins to gather",
+    "gamerule.canFarmerVillagersFarm": "Allow farmer villagers to farm",
+    "gamerule.canBurningArrowsFromMobsModifyBlocks": "Allow burning arrows from mobs to modify blocks"
 }

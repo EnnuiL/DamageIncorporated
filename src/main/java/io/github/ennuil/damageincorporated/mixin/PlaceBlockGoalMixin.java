@@ -18,14 +18,14 @@ public class PlaceBlockGoalMixin {
 
 	@Inject(
 		at = @At("RETURN"),
-		method = "canStart",
+		method = "canStart()Z",
 		cancellable = true
 	)
-	private void controlEndermanPickUp(CallbackInfoReturnable<Boolean> cir) {
+	private void controlEndermanPlaceDown(CallbackInfoReturnable<Boolean> cir) {
 		if (cir.getReturnValueZ()) {
 			if (!this.enderman.world.getGameRules().getBoolean(DamageIncorporatedMod.CAN_ENDERMEN_PLACE_BLOCKS_RULE)) {
 				cir.setReturnValue(false);
-			}   
+			}
 		}
 	}
 }

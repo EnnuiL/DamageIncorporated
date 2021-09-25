@@ -1,19 +1,26 @@
 package io.github.ennuil.damageincorporated.mixin;
 
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
-import net.minecraft.world.explosion.Explosion.DestructionType;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArgs;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
 import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils;
+import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils.DamageIncDestructionType;
 
 @Mixin(CreeperEntity.class)
 public class CreeperEntityMixin extends HostileEntity {
@@ -21,25 +28,45 @@ public class CreeperEntityMixin extends HostileEntity {
 		super(entityType, world);
 	}
 
-	@Shadow
-	public boolean shouldRenderOverlay() { return false; }
+	@Unique
+	private DamageIncDestructionType storedCreeperGameRuleValue;
 
-	@ModifyArg(
-		at = @At(value = "INVOKE", target = "net/minecraft/world/World.createExplosion(Lnet/minecraft/entity/Entity;DDDFLnet/minecraft/world/explosion/Explosion$DestructionType;)Lnet/minecraft/world/explosion/Explosion;"),
-		method = "explode()V",
-		index = 5
+	@Unique
+	private DamageIncDestructionType storedChargedCreeperGameRuleValue;
+
+	@Inject(
+		at = @At("HEAD"),
+		method = "explode()V"
 	)
-	private DestructionType modifyDestructionType(DestructionType originalDestructionType) {
+	private void getExplodeArgs(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo info) {
+		this.storedCreeperGameRuleValue = this.world.getGameRules().get(DamageIncorporatedMod.CREEPER_DESTRUCTION_TYPE_RULE).get();
+		this.storedChargedCreeperGameRuleValue = this.world.getGameRules().get(DamageIncorporatedMod.CHARGED_CREEPER_DESTRUCTION_TYPE_RULE).get();
+	}
+
+	@ModifyArgs(
+		at = @At(
+			value = "INVOKE",
+			target = "net/minecraft/world/World.createExplosion(Lnet/minecraft/entity/Entity;DDDFLnet/minecraft/world/explosion/Explosion$DestructionType;)Lnet/minecraft/world/explosion/Explosion;"
+		),
+		method = "explode()V"
+	)
+	private Args modifyCreeperExplosion(Args args) {
 		if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
 			if (!this.shouldRenderOverlay()) {
-				//Handle the creeperDestructionType game rule
-				return DamageIncorporatedUtils.translateDestructionDrops(this.world.getGameRules().get(DamageIncorporatedMod.CREEPER_DESTRUCTION_TYPE_RULE).get());
+				if (this.storedCreeperGameRuleValue.equals(DamageIncDestructionType.NONE)) {
+					args.set(4, 0.0F);
+				}
+				args.set(5, DamageIncorporatedUtils.translateDestructionDrops(this.storedCreeperGameRuleValue));
 			} else {
-				//Handle the chargedCreeperDestructionType game rule
-				return DamageIncorporatedUtils.translateDestructionDrops(this.world.getGameRules().get(DamageIncorporatedMod.CHARGED_CREEPER_DESTRUCTION_TYPE_RULE).get());
+				if (this.storedChargedCreeperGameRuleValue.equals(DamageIncDestructionType.NONE)) {
+					args.set(4, 0.0F);
+				}
+				args.set(5, DamageIncorporatedUtils.translateDestructionDrops(this.storedChargedCreeperGameRuleValue));
 			}
-		} else {
-			return originalDestructionType;
 		}
+		return args;
 	}
+
+	@Shadow
+	public boolean shouldRenderOverlay() { return false; }
 }

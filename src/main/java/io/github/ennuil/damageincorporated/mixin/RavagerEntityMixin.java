@@ -5,36 +5,39 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.RavagerEntity;
 import net.minecraft.entity.raid.RaiderEntity;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import net.minecraft.world.GameRules.BooleanRule;
+import net.minecraft.world.GameRules.Key;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(RavagerEntity.class)
 public class RavagerEntityMixin extends RaiderEntity {
-    protected RavagerEntityMixin(EntityType<? extends RaiderEntity> entityType, World world) {
-        super(entityType, world);
-    }
+	private RavagerEntityMixin(EntityType<? extends RaiderEntity> entityType, World world) {
+		super(entityType, world);
+	}
 
-    @Redirect(
-            method = "tickMovement",
-            at = @At(value = "INVOKE",target = "Lnet/minecraft/world/GameRules;getBoolean(Lnet/minecraft/world/GameRules$Key;)Z", ordinal = 0)
-    )
-    private boolean redirectMobGriefing(GameRules gameRules, GameRules.Key<GameRules.BooleanRule> rule){
-        if(!gameRules.getBoolean(DamageIncorporatedMod.CAN_RAVAGERS_BREAK_BLOCKS))
-            return false;
-        return gameRules.getBoolean(GameRules.DO_MOB_GRIEFING);
-    }
+	@ModifyArg(
+		at = @At(
+			value = "INVOKE",
+			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"
+		),
+		method = "tickMovement",
+		index = 0
+	)
+	private Key<BooleanRule> modifyRavagerLeavesGameRuleArg(Key<BooleanRule> originalRule) {
+		if (this.world.getGameRules().getBoolean(originalRule)) {
+			return DamageIncorporatedMod.CAN_RAVAGERS_BREAK_LEAVES_RULE;
+		}
+		return originalRule;
+	}
 
-    @Shadow
-    public void addBonusForWave(int wave, boolean unused) {
-
-    }
-
-    @Shadow
-    public SoundEvent getCelebratingSound() {
-        return null;
-    }
+	@Shadow
+	public void addBonusForWave(int wave, boolean unused) {}
+	
+	@Shadow
+	public SoundEvent getCelebratingSound() { return null; }
 }
