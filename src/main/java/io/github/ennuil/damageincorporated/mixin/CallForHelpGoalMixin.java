@@ -25,7 +25,7 @@ public class CallForHelpGoalMixin {
 		method = "tick()V",
 		index = 0
 	)
-	private Key<BooleanRule> modifySilverfishHelpGameRuleArg(Key<BooleanRule> originalRule) {
+	private Key<BooleanRule> modifyCallForHelpGameRuleArg(Key<BooleanRule> originalRule) {
 		if (this.silverfish.world.getGameRules().getBoolean(originalRule)) {
 			return DamageIncorporatedMod.PERMANENT_INFESTED_BLOCK_DAMAGE_RULE;
 		}

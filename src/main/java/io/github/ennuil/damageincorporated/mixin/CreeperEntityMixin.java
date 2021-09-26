@@ -35,7 +35,7 @@ public class CreeperEntityMixin extends HostileEntity {
 		at = @At("HEAD"),
 		method = "explode()V"
 	)
-	private void getGameRuleValues(CallbackInfo ci) {
+	private void getCreeperGameRuleValues(CallbackInfo ci) {
 		this.storedCreeperGameRuleValue = this.world.getGameRules().get(DamageIncorporatedMod.CREEPER_DESTRUCTION_TYPE_RULE).get();
 		this.storedChargedCreeperGameRuleValue = this.world.getGameRules().get(DamageIncorporatedMod.CHARGED_CREEPER_DESTRUCTION_TYPE_RULE).get();
 	}

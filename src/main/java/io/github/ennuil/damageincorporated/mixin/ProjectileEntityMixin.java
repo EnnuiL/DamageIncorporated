@@ -36,7 +36,7 @@ public class ProjectileEntityMixin {
 	)
 	private Key<BooleanRule> modifyProjectileGameRule(Key<BooleanRule> originalRule) {
 		if (this.storedWorld.getGameRules().getBoolean(originalRule)) {
-			return DamageIncorporatedMod.CAN_BURNING_ARROWS_FROM_MOBS_MODIFY_BLOCKS_RULE;
+			return DamageIncorporatedMod.CAN_BURNING_PROJECTILES_MODIFY_BLOCKS_RULE;
 		}
 		return originalRule;
 	}

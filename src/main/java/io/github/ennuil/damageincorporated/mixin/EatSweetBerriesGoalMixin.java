@@ -24,7 +24,7 @@ public class EatSweetBerriesGoalMixin {
 	)
 	private Key<BooleanRule> modifyFoxGoalsGameRuleArg(Key<BooleanRule> originalRule) {
 		if (field_17975.world.getGameRules().getBoolean(originalRule)) {
-			return DamageIncorporatedMod.CAN_FOXES_EAT_IN_WORLD_BERRIES_RULE;
+			return DamageIncorporatedMod.CAN_FOXES_PICK_BERRIES_RULE;
 		}
 		return originalRule;
 	}

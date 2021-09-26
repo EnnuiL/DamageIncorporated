@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
-import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils.FARMLAND_TRAMPLING_ENUM;
+import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils.AllowedEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.entity.Entity;
@@ -19,10 +19,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 @Mixin(FarmlandBlock.class)
-@SuppressWarnings("rawtypes")
 public class FarmlandBlockMixin {
 	@Unique
-	private FARMLAND_TRAMPLING_ENUM storedGameRuleValue;
+	private AllowedEntities storedGameRuleValue;
 
 	@Inject(
 		at = @At("HEAD"),
@@ -36,10 +35,10 @@ public class FarmlandBlockMixin {
 		constant = @Constant(classValue = LivingEntity.class),
 		method = "onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V"
 	)
-	private Class modifyEntityConstant(Object object, Class originalClass) {
+	private Class<?> modifyFarmlandEntityConstant(Object object, Class<?> originalClass) {
 		return switch (this.storedGameRuleValue) {
-			case PLAYER -> PlayerEntity.class;
-			case ENTITY -> {
+			case PLAYER_ONLY -> PlayerEntity.class;
+			case MOB_ONLY -> {
 				if (object instanceof PlayerEntity) {
 					yield Integer.class;
 				} else {
@@ -55,9 +54,9 @@ public class FarmlandBlockMixin {
 		constant = @Constant(classValue = PlayerEntity.class),
 		method = "onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V"
 	)
-	private Class modifyPlayerConstant(Object object, Class originalClass) {
+	private Class<?> modifyFarmlandPlayerConstant(Object object, Class<?> originalClass) {
 		return switch (this.storedGameRuleValue) {
-			case ENTITY -> Integer.class;
+			case MOB_ONLY -> Integer.class;
 			default -> originalClass;
 		};
 	}

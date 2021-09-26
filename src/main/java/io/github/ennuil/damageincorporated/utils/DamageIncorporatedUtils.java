@@ -10,10 +10,10 @@ public class DamageIncorporatedUtils {
 		LOSSY_EXPLOSION
 	};
 
-	public static enum FARMLAND_TRAMPLING_ENUM {
+	public static enum AllowedEntities {
 		ALL,
-		PLAYER,
-		ENTITY,
+		PLAYER_ONLY,
+		MOB_ONLY,
 		OFF
 	};
 

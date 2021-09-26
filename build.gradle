@@ -15,14 +15,10 @@ version = System.env.GITHUB_ACTIONS == "true"
 	: project.mod_version
 group = project.maven_group
 
-repositories {
-	maven { url "https://maven.quiltmc.org/repository/release" }
-}
-
 dependencies {
 	// To change the versions, see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "org.quiltmc:yarn:${project.yarn_mappings}:v2"
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"

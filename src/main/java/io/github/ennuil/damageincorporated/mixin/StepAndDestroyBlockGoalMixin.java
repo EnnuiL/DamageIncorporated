@@ -31,15 +31,15 @@ public class StepAndDestroyBlockGoalMixin {
 		if (this.stepAndDestroyMob.world.getGameRules().getBoolean(originalRule)) {
 			EntityType<?> mobType = this.stepAndDestroyMob.getType();
 			if (mobType.equals(EntityType.ZOMBIE)) {
-				return DamageIncorporatedMod.CAN_ZOMBIES_TARGET_TURTLE_EGGS_RULE;
+				return DamageIncorporatedMod.CAN_TURTLE_EGGS_BE_STOMPED_BY_ZOMBIES_RULE;
 			} else if (mobType.equals(EntityType.ZOMBIFIED_PIGLIN)) {
-				return DamageIncorporatedMod.CAN_ZOMBIFIED_PIGLINS_TARGET_TURTLE_EGGS_RULE;
+				return DamageIncorporatedMod.CAN_TURTLE_EGGS_BE_STOMPED_BY_ZOMBIFIED_PIGLINS_RULE;
 			} else if (mobType.equals(EntityType.ZOMBIE_VILLAGER)) {
-				return DamageIncorporatedMod.CAN_ZOMBIE_VILLAGERS_TARGET_TURTLE_EGGS_RULE;
-			} else if (mobType.equals(EntityType.DROWNED)) {
-				return DamageIncorporatedMod.CAN_DROWNEDS_TARGET_TURTLE_EGGS_RULE;
+				return DamageIncorporatedMod.CAN_TURTLE_EGGS_BE_STOMPED_BY_ZOMBIE_VILLAGERS_RULE;
 			} else if (mobType.equals(EntityType.HUSK)) {
-				return DamageIncorporatedMod.CAN_HUSKS_TARGET_TURTLE_EGGS_RULE;
+				return DamageIncorporatedMod.CAN_TURTLE_EGGS_BE_STOMPED_BY_HUSKS_RULE;
+			} else if (mobType.equals(EntityType.DROWNED)) {
+				return DamageIncorporatedMod.CAN_TURTLE_EGGS_BE_STOMPED_BY_DROWNEDS_RULE;
 			}
 		}
 		return originalRule;

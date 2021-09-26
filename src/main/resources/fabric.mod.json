@@ -3,19 +3,18 @@
   "id": "damageincorporated",
   "version": "${version}",
   "name": "Damage Incorporated",
-  "description": "Allows for more control on mob destruction.",
+  "description": "Makes the mobGriefing game rule modular by adding many game rules with equivalent functionality.",
   "authors": ["EnnuiL"],
   "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/",
-    "sources": "https://github.com/"
+    "homepage": "https://modrinth.com/mod/",
+    "issues": "https://github.com/EnnuiL/DamageIncorporated/issues",
+    "sources": "https://github.com/EnnuiL/DamageIncorporated"
   },
   "license": "MIT",
   "icon": "assets/damageincorporated/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "io.github.ennuil.damageincorporated.DamageIncorporatedMod"
-    ]
+    "main": ["io.github.ennuil.damageincorporated.DamageIncorporatedMod"]
   },
   "accessWidener": "damageincorporated.accesswidener",
   "mixins": [

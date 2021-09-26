@@ -4,18 +4,16 @@ import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.RavagerEntity;
 import net.minecraft.entity.raid.RaiderEntity;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraft.world.GameRules.BooleanRule;
 import net.minecraft.world.GameRules.Key;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(RavagerEntity.class)
-public class RavagerEntityMixin extends RaiderEntity {
+public abstract class RavagerEntityMixin extends RaiderEntity {
 	private RavagerEntityMixin(EntityType<? extends RaiderEntity> entityType, World world) {
 		super(entityType, world);
 	}
@@ -34,10 +32,4 @@ public class RavagerEntityMixin extends RaiderEntity {
 		}
 		return originalRule;
 	}
-
-	@Shadow
-	public void addBonusForWave(int wave, boolean unused) {}
-	
-	@Shadow
-	public SoundEvent getCelebratingSound() { return null; }
 }
