@@ -42,7 +42,7 @@ public class DamageIncorporatedMod implements ModInitializer {
 	public static GameRules.Key<BooleanRule> CAN_TURTLE_EGGS_BE_STOMPED_BY_ZOMBIE_VILLAGERS_RULE;
 	public static GameRules.Key<BooleanRule> CAN_TURTLE_EGGS_BE_STOMPED_BY_HUSKS_RULE;
 	public static GameRules.Key<BooleanRule> CAN_TURTLE_EGGS_BE_STOMPED_BY_DROWNEDS_RULE;
-	public static GameRules.Key<BooleanRule> CAN_BURNING_MOBS_BREAK_POWDER_SNOW_RULE;
+	public static GameRules.Key<EnumRule<AllowedEntities>> CAN_BURNING_MOBS_BREAK_POWDER_SNOW_RULE;
 	public static GameRules.Key<EnumRule<AllowedEntities>> TURTLE_EGG_TRAMPLING_RULE;
 	public static GameRules.Key<BooleanRule> CAN_RAVAGERS_BREAK_LEAVES_RULE;
 	public static GameRules.Key<BooleanRule> CAN_RAVAGERS_BREAK_CROPS_RULE;
@@ -51,7 +51,7 @@ public class DamageIncorporatedMod implements ModInitializer {
 	public static GameRules.Key<BooleanRule> CAN_BLAZE_FIREBALLS_SPREAD_FIRE_RULE;
 	public static GameRules.Key<BooleanRule> CAN_PIGLINS_GATHER_RULE;
 	public static GameRules.Key<BooleanRule> CAN_FARMER_VILLAGERS_FARM_RULE;
-	public static GameRules.Key<BooleanRule> CAN_BURNING_PROJECTILES_MODIFY_BLOCKS_RULE;
+	public static GameRules.Key<EnumRule<AllowedEntities>> CAN_BURNING_PROJECTILES_MODIFY_BLOCKS_RULE;
 	
 	@Override
 	public void onInitialize() {
@@ -87,15 +87,13 @@ public class DamageIncorporatedMod implements ModInitializer {
 		CAN_TURTLE_EGGS_BE_STOMPED_BY_ZOMBIE_VILLAGERS_RULE = GameRuleRegistry.register("canTurtleEggsBeStompedByZombieVillagers", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_TURTLE_EGGS_BE_STOMPED_BY_HUSKS_RULE = GameRuleRegistry.register("canTurtleEggsBeStompedByHusks", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_TURTLE_EGGS_BE_STOMPED_BY_DROWNEDS_RULE = GameRuleRegistry.register("canTurtleEggsBeStompedByDrowneds", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
-		// TODO - It would be neat to use AllowedEntities here too
-		CAN_BURNING_MOBS_BREAK_POWDER_SNOW_RULE = GameRuleRegistry.register("canBurningMobsBreakPowderSnow", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
+		CAN_BURNING_MOBS_BREAK_POWDER_SNOW_RULE = GameRuleRegistry.register("canBurningMobsBreakPowderSnow", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createEnumRule(AllowedEntities.ALL));
 		CAN_RAVAGERS_BREAK_LEAVES_RULE = GameRuleRegistry.register("canRavagersBreakLeaves", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_RAVAGERS_BREAK_CROPS_RULE = GameRuleRegistry.register("canRavagersBreakCrops", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_MOBS_BREAK_DOORS_RULE = GameRuleRegistry.register("canMobsBreakDoors", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_ENDER_DRAGON_DESTROY_BLOCKS = GameRuleRegistry.register("canEnderDragonDestroyBlocks", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
 		CAN_BLAZE_FIREBALLS_SPREAD_FIRE_RULE = GameRuleRegistry.register("canBlazeFireballsSpreadFire", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
-		// TODO - Watch me as I make this use the AllowedEntities enum in order to avoid a massive name!
-		CAN_BURNING_PROJECTILES_MODIFY_BLOCKS_RULE = GameRuleRegistry.register("canBurningProjectilesModifyBlocks", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
+		CAN_BURNING_PROJECTILES_MODIFY_BLOCKS_RULE = GameRuleRegistry.register("canBurningProjectilesModifyBlocks", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createEnumRule(AllowedEntities.ALL));
 		
 		// Item-consuming rules
 		CAN_MOBS_PICK_UP_LOOT_RULE = GameRuleRegistry.register("canMobsPickUpLoot", DAMAGE_INCORPORATED_CATEGORY, GameRuleFactory.createBooleanRule(true));
