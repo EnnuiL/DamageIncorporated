@@ -9,7 +9,7 @@ Damage Incorporated is a mod that adds many individual game rules which lets you
 This mod is available for download on the following services:
 
 - [Modrinth (recommended)](https://modrinth.com/mod/damage-incorporated)
-<!-- - [CurseForge (recommended)](https://www.curseforge.com/minecraft/mc-mods/) -->
+- [CurseForge](https://www.curseforge.com/minecraft/mc-mods/damage-incorporated)
 - [GitHub Releases (alternative)](https://github.com/EnnuiL/DamageIncorporated/releases)
 
 ## License

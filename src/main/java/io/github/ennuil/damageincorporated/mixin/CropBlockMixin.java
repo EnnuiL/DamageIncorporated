@@ -23,7 +23,7 @@ public class CropBlockMixin {
 
 	@Inject(
 		at = @At("HEAD"),
-		method = "onEntityCollision(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V"
+		method = "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V"
 	)
 	private void getOnEntityCollisionArgs(BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo ci) {
 		this.storedWorld = world;
@@ -34,7 +34,7 @@ public class CropBlockMixin {
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"
 		),
-		method = "onEntityCollision(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V"
+		method = "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V"
 	)
 	private Key<BooleanRule> modifyRavagerCropGameRule(Key<BooleanRule> originalRule) {
 		if (this.storedWorld.getGameRules().getBoolean(originalRule)) {

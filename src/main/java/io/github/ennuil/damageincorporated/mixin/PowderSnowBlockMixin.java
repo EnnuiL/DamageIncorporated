@@ -22,7 +22,7 @@ public class PowderSnowBlockMixin {
 			value = "INVOKE",
 			target = "Lnet/minecraft/entity/Entity;isOnFire()Z"
 		),
-		method = "onEntityCollision(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V",
+		method = "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V",
 		cancellable = true
 	)
 	private void cancelIfStatement(BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo ci) {
