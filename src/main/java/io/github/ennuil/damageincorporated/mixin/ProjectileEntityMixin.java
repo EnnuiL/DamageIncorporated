@@ -40,7 +40,7 @@ public class ProjectileEntityMixin {
 		switch (this.storedGameRuleValue) {
 			case PLAYER_ONLY -> cir.setReturnValue(entity instanceof PlayerEntity ? entity.canModifyAt(world, pos) : entity == null);
 			case MOB_ONLY -> cir.setReturnValue((entity == null || world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) && !(entity instanceof PlayerEntity));
-			case OFF -> cir.setReturnValue(false);
+			case OFF -> cir.setReturnValue(entity == null);
 			default -> {}
 		}
 	}
