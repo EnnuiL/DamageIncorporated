@@ -10,8 +10,8 @@ import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.world.GameRules.BooleanRule;
 import net.minecraft.world.GameRules.Key;
 
-@Mixin(FoxEntity.EatSweetBerriesGoal.class)
-public class EatSweetBerriesGoalMixin {
+@Mixin(FoxEntity.PickBerriesGoal.class)
+public class PickBerriesGoalMixin {
 	@Shadow(aliases = "field_17975")
 	private FoxEntity field_17975;
 	
@@ -20,7 +20,7 @@ public class EatSweetBerriesGoalMixin {
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"
 		),
-		method = "eatSweetBerry()V"
+		method = "pickFromTargetPos()V"
 	)
 	private Key<BooleanRule> modifyFoxGoalsGameRuleArg(Key<BooleanRule> originalRule) {
 		if (field_17975.world.getGameRules().getBoolean(originalRule)) {

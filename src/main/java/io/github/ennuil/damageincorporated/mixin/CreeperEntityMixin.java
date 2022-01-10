@@ -49,7 +49,7 @@ public class CreeperEntityMixin extends HostileEntity {
 	)
 	private void modifyCreeperExplosion(Args args) {
 		if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
-			if (!this.shouldRenderOverlay()) {
+			if (!this.isOverlayConditionMet()) {
 				if (this.storedCreeperGameRuleValue.equals(DamageIncDestructionType.NONE)) {
 					args.set(4, 0.0F);
 				}
@@ -64,5 +64,5 @@ public class CreeperEntityMixin extends HostileEntity {
 	}
 
 	@Shadow
-	public boolean shouldRenderOverlay() { return false; }
+	public boolean isOverlayConditionMet() { return false; }
 }

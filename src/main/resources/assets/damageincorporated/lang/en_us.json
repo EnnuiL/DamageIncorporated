@@ -72,7 +72,7 @@
     "gamerule.canSheepBreakGrass": "Allow sheep to break grass",
     "gamerule.canSheepTurnGrassBlocksIntoDirt": "Allow sheep to turn grass blocks into dirt",
     "gamerule.canRabbitsEatCarrotCrops": "Allow rabbits to eat carrot crops",
-    "gamerule.canFoxesPickBerries": "Allow foxes to pick berries from plants",
+    "gamerule.canFoxesPickBerries": "Allow foxes to pick berries from bushes",
     "gamerule.canFarmerVillagersFarm": "Allow farmer villagers to farm",
     "gamerule.snowGolemTrail": "Snow golem trail"
 }
