@@ -1,7 +1,5 @@
 package io.github.ennuil.damageincorporated.mixin.general;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
-import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils.AllowedEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PowderSnowBlock;
 import net.minecraft.entity.Entity;
@@ -13,6 +11,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedEnums.AllowedEntities;
 
 @Mixin(PowderSnowBlock.class)
 public class PowderSnowBlockMixin {
@@ -27,7 +28,7 @@ public class PowderSnowBlockMixin {
 	)
 	private void cancelIfStatement(BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo ci) {
 		boolean cancelPowderSnowBreak = false;
-		AllowedEntities gameRuleValue = world.getGameRules().get(DamageIncorporatedMod.CAN_BURNING_MOBS_BREAK_POWDER_SNOW_RULE).get();
+		AllowedEntities gameRuleValue = world.getGameRules().get(DamageIncorporatedGameRules.CAN_BURNING_MOBS_BREAK_POWDER_SNOW_RULE).get();
 		
 		if (!gameRuleValue.equals(AllowedEntities.OFF)) {
 			if (entity.isOnFire()) {

@@ -1,6 +1,5 @@
 package io.github.ennuil.damageincorporated.mixin.hostile;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.RavagerEntity;
 import net.minecraft.entity.raid.RaiderEntity;
@@ -11,6 +10,8 @@ import net.minecraft.world.GameRules.Key;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
+
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
 
 @Mixin(RavagerEntity.class)
 public abstract class RavagerEntityMixin extends RaiderEntity {
@@ -28,7 +29,7 @@ public abstract class RavagerEntityMixin extends RaiderEntity {
 	)
 	private Key<BooleanRule> modifyRavagerLeavesGameRuleArg(Key<BooleanRule> originalRule) {
 		if (this.world.getGameRules().getBoolean(originalRule)) {
-			return DamageIncorporatedMod.CAN_RAVAGERS_BREAK_LEAVES_RULE;
+			return DamageIncorporatedGameRules.CAN_RAVAGERS_BREAK_LEAVES_RULE;
 		}
 		return originalRule;
 	}

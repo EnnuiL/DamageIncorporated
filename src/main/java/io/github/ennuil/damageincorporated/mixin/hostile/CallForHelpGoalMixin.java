@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
 import net.minecraft.entity.mob.SilverfishEntity;
 import net.minecraft.world.GameRules.BooleanRule;
 import net.minecraft.world.GameRules.Key;
@@ -27,7 +27,7 @@ public class CallForHelpGoalMixin {
 	)
 	private Key<BooleanRule> modifyCallForHelpGameRuleArg(Key<BooleanRule> originalRule) {
 		if (this.silverfish.world.getGameRules().getBoolean(originalRule)) {
-			return DamageIncorporatedMod.PERMANENT_INFESTED_BLOCK_DAMAGE_RULE;
+			return DamageIncorporatedGameRules.PERMANENT_INFESTED_BLOCK_DAMAGE_RULE;
 		}
 		return originalRule;
 	}

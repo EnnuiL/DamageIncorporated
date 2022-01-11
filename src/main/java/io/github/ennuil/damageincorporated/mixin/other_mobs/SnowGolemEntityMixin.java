@@ -5,7 +5,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.GolemEntity;
 import net.minecraft.entity.passive.SnowGolemEntity;
@@ -26,7 +26,7 @@ public class SnowGolemEntityMixin extends GolemEntity {
 		cancellable = true
 	)
 	private void disableSnowGolemSnowPath(CallbackInfo ci) {
-		if (!this.world.getGameRules().getBoolean(DamageIncorporatedMod.SNOW_GOLEM_TRAIL_RULE)) {
+		if (!this.world.getGameRules().getBoolean(DamageIncorporatedGameRules.SNOW_GOLEM_TRAIL_RULE)) {
 			ci.cancel();
 		}
 	}

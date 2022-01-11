@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
 import net.minecraft.entity.ai.brain.task.FarmerVillagerTask;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -36,7 +36,7 @@ public class FarmerVillagerTaskMixin {
 	)
 	private Key<BooleanRule> modifyFarmerGameRule(Key<BooleanRule> originalRule) {
 		if (this.storedServerWorld.getGameRules().getBoolean(originalRule)) {
-			return DamageIncorporatedMod.CAN_FARMER_VILLAGERS_FARM_RULE;
+			return DamageIncorporatedGameRules.CAN_FARMER_VILLAGERS_FARM_RULE;
 		}
 		return originalRule;
 	}

@@ -8,8 +8,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
-import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils.AllowedEntities;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedEnums.AllowedEntities;
 import net.minecraft.block.TurtleEggBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -26,7 +26,7 @@ public class TurtleEggBlockMixin {
 		method = "breaksEgg(Lnet/minecraft/world/World;Lnet/minecraft/entity/Entity;)Z"
 	)
 	private void getBreaksEggArgs(World world, Entity entity, CallbackInfoReturnable<Boolean> cir) {
-		this.storedGameRuleValue = world.getGameRules().get(DamageIncorporatedMod.TURTLE_EGG_TRAMPLING_RULE).get();
+		this.storedGameRuleValue = world.getGameRules().get(DamageIncorporatedGameRules.TURTLE_EGG_TRAMPLING_RULE).get();
 	}
 
 	@ModifyConstant(

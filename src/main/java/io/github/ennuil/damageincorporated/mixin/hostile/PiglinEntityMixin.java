@@ -5,7 +5,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.AbstractPiglinEntity;
 import net.minecraft.entity.mob.PiglinEntity;
@@ -25,7 +25,7 @@ public abstract class PiglinEntityMixin extends AbstractPiglinEntity {
 	)
 	private void controlPiglinGather(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
 		if (cir.getReturnValueZ()) {
-			if (!this.world.getGameRules().getBoolean(DamageIncorporatedMod.CAN_PIGLINS_GATHER_RULE)) {
+			if (!this.world.getGameRules().getBoolean(DamageIncorporatedGameRules.CAN_PIGLINS_GATHER_RULE)) {
 				cir.setReturnValue(false);
 			}
 		}

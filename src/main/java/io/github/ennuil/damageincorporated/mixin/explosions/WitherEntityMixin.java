@@ -6,9 +6,9 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
-import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils;
-import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils.DamageIncDestructionType;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedEnums;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedEnums.DamageIncDestructionType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.mob.HostileEntity;
@@ -32,11 +32,11 @@ public class WitherEntityMixin extends HostileEntity {
 	)
 	private void modifyWitherSpawnExplosion(Args args) {
 		if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
-			DamageIncDestructionType destructionType = this.world.getGameRules().get(DamageIncorporatedMod.WITHER_SPAWN_DESTRUCTION_TYPE_RULE).get();
+			DamageIncDestructionType destructionType = this.world.getGameRules().get(DamageIncorporatedGameRules.WITHER_SPAWN_DESTRUCTION_TYPE_RULE).get();
 			if (destructionType.equals(DamageIncDestructionType.NONE)) {
 				args.set(4, 0.0F);
 			}
-			args.set(6, DamageIncorporatedUtils.translateDestructionDrops(destructionType));
+			args.set(6, DamageIncorporatedEnums.translateDestructionType(destructionType));
 		}
 	}
 
@@ -50,7 +50,7 @@ public class WitherEntityMixin extends HostileEntity {
 	)
 	private Key<BooleanRule> modifyWitherGameRuleArg(Key<BooleanRule> originalRule) {
 		if (this.world.getGameRules().getBoolean(originalRule)) {
-			return DamageIncorporatedMod.CAN_WITHER_BREAK_BLOCKS_RULE;
+			return DamageIncorporatedGameRules.CAN_WITHER_BREAK_BLOCKS_RULE;
 		}
 		return originalRule;
 	}

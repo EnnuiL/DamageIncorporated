@@ -1,8 +1,8 @@
-package io.github.ennuil.damageincorporated.utils;
+package io.github.ennuil.damageincorporated.game_rules;
 
 import net.minecraft.world.explosion.Explosion.DestructionType;
 
-public class DamageIncorporatedUtils {
+public class DamageIncorporatedEnums {
 	public static enum DamageIncDestructionType {
 		NONE,
 		DAMAGE_ONLY,
@@ -17,8 +17,8 @@ public class DamageIncorporatedUtils {
 		OFF
 	};
 
-	public static DestructionType translateDestructionDrops(DamageIncDestructionType destructionDrops) {
-		return switch (destructionDrops) {
+	public static DestructionType translateDestructionType(DamageIncDestructionType destructionType) {
+		return switch (destructionType) {
 			case NONE -> DestructionType.NONE;
 			case DAMAGE_ONLY -> DestructionType.NONE;
 			case LOSSLESS_EXPLOSION -> DestructionType.BREAK;

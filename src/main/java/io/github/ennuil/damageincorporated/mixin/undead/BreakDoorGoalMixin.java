@@ -5,7 +5,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
 import net.minecraft.entity.ai.goal.BreakDoorGoal;
 import net.minecraft.entity.ai.goal.DoorInteractGoal;
 import net.minecraft.entity.mob.MobEntity;
@@ -23,7 +23,7 @@ public class BreakDoorGoalMixin extends DoorInteractGoal {
 	)
 	private void controlDoorBreak(CallbackInfoReturnable<Boolean> cir) {
 		if (cir.getReturnValueZ()) {
-			if (!this.mob.world.getGameRules().getBoolean(DamageIncorporatedMod.CAN_MOBS_BREAK_DOORS_RULE)) {
+			if (!this.mob.world.getGameRules().getBoolean(DamageIncorporatedGameRules.CAN_MOBS_BREAK_DOORS_RULE)) {
 				cir.setReturnValue(false);
 			}
 		}

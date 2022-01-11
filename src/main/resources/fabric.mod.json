@@ -13,9 +13,6 @@
   "license": "MIT",
   "icon": "assets/damageincorporated/icon.png",
   "environment": "*",
-  "entrypoints": {
-    "main": ["io.github.ennuil.damageincorporated.DamageIncorporatedMod"]
-  },
   "accessWidener": "damageincorporated.accesswidener",
   "mixins": [
     "damageincorporated.mixins.json"

@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
 import net.minecraft.entity.ai.goal.EatGrassGoal;
 import net.minecraft.world.World;
 import net.minecraft.world.GameRules.BooleanRule;
@@ -28,7 +28,7 @@ public class EatGrassGoalMixin {
 	)
 	private Key<BooleanRule> modifyGrassGameRule(Key<BooleanRule> originalRule) {
 		if (this.world.getGameRules().getBoolean(originalRule)) {
-			return DamageIncorporatedMod.CAN_SHEEP_BREAK_GRASS_RULE;
+			return DamageIncorporatedGameRules.CAN_SHEEP_BREAK_GRASS_RULE;
 		}
 		return originalRule;
 	}
@@ -43,7 +43,7 @@ public class EatGrassGoalMixin {
 	)
 	private Key<BooleanRule> modifyGrassBlockGameRule(Key<BooleanRule> originalRule) {
 		if (this.world.getGameRules().getBoolean(originalRule)) {
-			return DamageIncorporatedMod.CAN_SHEEP_TURN_GRASS_BLOCKS_INTO_DIRT_RULE;
+			return DamageIncorporatedGameRules.CAN_SHEEP_TURN_GRASS_BLOCKS_INTO_DIRT_RULE;
 		}
 		return originalRule;
 	}

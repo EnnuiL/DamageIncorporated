@@ -4,7 +4,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
@@ -28,7 +28,7 @@ public abstract class MobEntityMixin extends LivingEntity {
 	)
 	private Key<BooleanRule> modifyMobPickUpGameRuleArg(Key<BooleanRule> originalRule) {
 		if (this.world.getGameRules().getBoolean(originalRule)) {
-			return DamageIncorporatedMod.CAN_MOBS_PICK_UP_LOOT_RULE;
+			return DamageIncorporatedGameRules.CAN_MOBS_PICK_UP_LOOT_RULE;
 		}
 		return originalRule;
 	}

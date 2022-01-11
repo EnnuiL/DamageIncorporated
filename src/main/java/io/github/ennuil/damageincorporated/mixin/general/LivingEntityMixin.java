@@ -4,7 +4,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -27,7 +27,7 @@ public abstract class LivingEntityMixin extends Entity {
 	)
 	private Key<BooleanRule> modifyWitherRoseGameRuleArg(Key<BooleanRule> originalRule) {
 		if (this.world.getGameRules().getBoolean(originalRule)) {
-			return DamageIncorporatedMod.CAN_WITHER_ROSE_BE_PLANTED_RULE;
+			return DamageIncorporatedGameRules.CAN_WITHER_ROSE_BE_PLANTED_RULE;
 		}
 		return originalRule;
 	}

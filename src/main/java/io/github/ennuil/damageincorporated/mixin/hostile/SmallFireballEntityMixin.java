@@ -4,7 +4,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.AbstractFireballEntity;
 import net.minecraft.entity.projectile.SmallFireballEntity;
@@ -27,7 +27,7 @@ public class SmallFireballEntityMixin extends AbstractFireballEntity {
 	)
 	private Key<BooleanRule> modifyBlazeFireballGameRuleArg(Key<BooleanRule> originalRule) {
 		if (this.world.getGameRules().getBoolean(originalRule)) {
-			return DamageIncorporatedMod.CAN_BLAZE_FIREBALLS_SPREAD_FIRE_RULE;
+			return DamageIncorporatedGameRules.CAN_BLAZE_FIREBALLS_SPREAD_FIRE_RULE;
 		}
 		return originalRule;
 	}

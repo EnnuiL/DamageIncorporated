@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
 import net.minecraft.entity.Entity;
@@ -38,7 +38,7 @@ public class CropBlockMixin {
 	)
 	private Key<BooleanRule> modifyRavagerCropGameRule(Key<BooleanRule> originalRule) {
 		if (this.storedWorld.getGameRules().getBoolean(originalRule)) {
-			return DamageIncorporatedMod.CAN_RAVAGERS_BREAK_CROPS_RULE;
+			return DamageIncorporatedGameRules.CAN_RAVAGERS_BREAK_CROPS_RULE;
 		}
 		return originalRule;
 	}

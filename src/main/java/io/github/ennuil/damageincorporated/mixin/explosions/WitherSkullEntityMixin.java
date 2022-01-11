@@ -5,9 +5,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
-import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils;
-import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils.DamageIncDestructionType;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedEnums;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedEnums.DamageIncDestructionType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.ExplosiveProjectileEntity;
 import net.minecraft.entity.projectile.WitherSkullEntity;
@@ -29,11 +29,11 @@ public class WitherSkullEntityMixin extends ExplosiveProjectileEntity {
 	)
 	private void modifyWitherSkullExplosion(Args args) {
 		if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
-			DamageIncDestructionType destructionType = this.world.getGameRules().get(DamageIncorporatedMod.WITHER_SKULL_DESTRUCTION_TYPE_RULE).get();
+			DamageIncDestructionType destructionType = this.world.getGameRules().get(DamageIncorporatedGameRules.WITHER_SKULL_DESTRUCTION_TYPE_RULE).get();
 			if (destructionType.equals(DamageIncDestructionType.NONE)) {
 				args.set(4, 0.0F);
 			}
-			args.set(6, DamageIncorporatedUtils.translateDestructionDrops(destructionType));
+			args.set(6, DamageIncorporatedEnums.translateDestructionType(destructionType));
 		}
 	}
 }

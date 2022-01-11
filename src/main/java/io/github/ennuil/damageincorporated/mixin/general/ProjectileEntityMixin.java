@@ -7,8 +7,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
-import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils.AllowedEntities;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedEnums.AllowedEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
@@ -26,7 +26,7 @@ public class ProjectileEntityMixin {
 		method = "canModifyAt(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)Z"
 	)
 	private void getCanModifyAtArgs(World world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-		this.storedGameRuleValue = world.getGameRules().get(DamageIncorporatedMod.CAN_BURNING_PROJECTILES_MODIFY_BLOCKS_RULE).get();
+		this.storedGameRuleValue = world.getGameRules().get(DamageIncorporatedGameRules.CAN_BURNING_PROJECTILES_MODIFY_BLOCKS_RULE).get();
 	}
 
 	// why

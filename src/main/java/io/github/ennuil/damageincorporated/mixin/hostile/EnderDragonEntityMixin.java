@@ -4,7 +4,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.mob.MobEntity;
@@ -27,7 +27,7 @@ public class EnderDragonEntityMixin extends MobEntity {
 	)
 	private Key<BooleanRule> modifyEnderDragonGameRuleArg(Key<BooleanRule> originalRule) {
 		if (this.world.getGameRules().getBoolean(originalRule)) {
-			return DamageIncorporatedMod.CAN_ENDER_DRAGON_DESTROY_BLOCKS;
+			return DamageIncorporatedGameRules.CAN_ENDER_DRAGON_DESTROY_BLOCKS;
 		}
 		return originalRule;
 	}

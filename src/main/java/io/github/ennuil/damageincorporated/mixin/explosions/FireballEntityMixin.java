@@ -11,9 +11,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
-import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils;
-import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils.DamageIncDestructionType;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedEnums;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedEnums.DamageIncDestructionType;
 
 @Mixin(FireballEntity.class)
 public class FireballEntityMixin extends AbstractFireballEntity {
@@ -30,12 +30,12 @@ public class FireballEntityMixin extends AbstractFireballEntity {
 	)
 	private void modifyGhastFireballExplosion(Args args) {
 		if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
-			DamageIncDestructionType destructionType = this.world.getGameRules().get(DamageIncorporatedMod.GHAST_FIREBALL_DESTRUCTION_TYPE_RULE).get();
+			DamageIncDestructionType destructionType = this.world.getGameRules().get(DamageIncorporatedGameRules.GHAST_FIREBALL_DESTRUCTION_TYPE_RULE).get();
 			if (destructionType.equals(DamageIncDestructionType.NONE)) {
 				args.set(4, 0.0F);
 			}
-			args.set(5, this.world.getGameRules().getBoolean(DamageIncorporatedMod.CAN_GHAST_FIREBALLS_SPREAD_FIRE_RULE));
-			args.set(6, DamageIncorporatedUtils.translateDestructionDrops(destructionType));
+			args.set(5, this.world.getGameRules().getBoolean(DamageIncorporatedGameRules.CAN_GHAST_FIREBALLS_SPREAD_FIRE_RULE));
+			args.set(6, DamageIncorporatedEnums.translateDestructionType(destructionType));
 		}
 	}
 }

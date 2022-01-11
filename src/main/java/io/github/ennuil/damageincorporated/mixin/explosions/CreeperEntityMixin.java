@@ -15,9 +15,9 @@ import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
-import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils;
-import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils.DamageIncDestructionType;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedEnums;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedEnums.DamageIncDestructionType;
 
 @Mixin(CreeperEntity.class)
 public class CreeperEntityMixin extends HostileEntity {
@@ -36,8 +36,8 @@ public class CreeperEntityMixin extends HostileEntity {
 		method = "explode()V"
 	)
 	private void getCreeperGameRuleValues(CallbackInfo ci) {
-		this.storedCreeperGameRuleValue = this.world.getGameRules().get(DamageIncorporatedMod.CREEPER_DESTRUCTION_TYPE_RULE).get();
-		this.storedChargedCreeperGameRuleValue = this.world.getGameRules().get(DamageIncorporatedMod.CHARGED_CREEPER_DESTRUCTION_TYPE_RULE).get();
+		this.storedCreeperGameRuleValue = this.world.getGameRules().get(DamageIncorporatedGameRules.CREEPER_DESTRUCTION_TYPE_RULE).get();
+		this.storedChargedCreeperGameRuleValue = this.world.getGameRules().get(DamageIncorporatedGameRules.CHARGED_CREEPER_DESTRUCTION_TYPE_RULE).get();
 	}
 
 	@ModifyArgs(
@@ -53,12 +53,12 @@ public class CreeperEntityMixin extends HostileEntity {
 				if (this.storedCreeperGameRuleValue.equals(DamageIncDestructionType.NONE)) {
 					args.set(4, 0.0F);
 				}
-				args.set(5, DamageIncorporatedUtils.translateDestructionDrops(this.storedCreeperGameRuleValue));
+				args.set(5, DamageIncorporatedEnums.translateDestructionType(this.storedCreeperGameRuleValue));
 			} else {
 				if (this.storedChargedCreeperGameRuleValue.equals(DamageIncDestructionType.NONE)) {
 					args.set(4, 0.0F);
 				}
-				args.set(5, DamageIncorporatedUtils.translateDestructionDrops(this.storedChargedCreeperGameRuleValue));
+				args.set(5, DamageIncorporatedEnums.translateDestructionType(this.storedChargedCreeperGameRuleValue));
 			}
 		}
 	}

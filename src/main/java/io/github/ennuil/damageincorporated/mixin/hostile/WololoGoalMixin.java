@@ -5,7 +5,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
+import io.github.ennuil.damageincorporated.game_rules.DamageIncorporatedGameRules;
 import net.minecraft.entity.mob.EvokerEntity;
 import net.minecraft.world.GameRules.BooleanRule;
 import net.minecraft.world.GameRules.Key;
@@ -24,7 +24,7 @@ public abstract class WololoGoalMixin {
 	)
 	private Key<BooleanRule> modifyWololoGameRuleArg(Key<BooleanRule> originalRule) {
 		if (field_7268.world.getGameRules().getBoolean(originalRule)) {
-			return DamageIncorporatedMod.CAN_EVOKERS_WOLOLO_RULE;
+			return DamageIncorporatedGameRules.CAN_EVOKERS_WOLOLO_RULE;
 		}
 		return originalRule;
 	}
