@@ -1,4 +1,4 @@
-package io.github.ennuil.damageincorporated.mixin;
+package io.github.ennuil.damageincorporated.mixin.undead;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

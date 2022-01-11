@@ -1,4 +1,4 @@
-package io.github.ennuil.damageincorporated.mixin;
+package io.github.ennuil.damageincorporated.mixin.general;
 
 import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
 import io.github.ennuil.damageincorporated.utils.DamageIncorporatedUtils.AllowedEntities;

@@ -1,4 +1,4 @@
-package io.github.ennuil.damageincorporated.mixin;
+package io.github.ennuil.damageincorporated.mixin.explosions;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.AbstractFireballEntity;

@@ -1,4 +1,4 @@
-package io.github.ennuil.damageincorporated.mixin;
+package io.github.ennuil.damageincorporated.mixin.undead;
 
 import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
 import net.minecraft.entity.EntityType;

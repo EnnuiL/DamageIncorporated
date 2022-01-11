@@ -1,4 +1,4 @@
-package io.github.ennuil.damageincorporated.mixin;
+package io.github.ennuil.damageincorporated.mixin.hostile;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -10,8 +10,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import io.github.ennuil.damageincorporated.DamageIncorporatedMod;
 import net.minecraft.entity.mob.EndermanEntity;
 
-@Mixin(EndermanEntity.PlaceBlockGoal.class)
-public class PlaceBlockGoalMixin {
+@Mixin(EndermanEntity.PickUpBlockGoal.class)
+public class PickUpBlockGoalMixin {
 	@Shadow
 	@Final
 	private EndermanEntity enderman;
@@ -21,9 +21,9 @@ public class PlaceBlockGoalMixin {
 		method = "canStart()Z",
 		cancellable = true
 	)
-	private void controlEndermanPlaceDown(CallbackInfoReturnable<Boolean> cir) {
+	private void controlEndermanPickUp(CallbackInfoReturnable<Boolean> cir) {
 		if (cir.getReturnValueZ()) {
-			if (!this.enderman.world.getGameRules().getBoolean(DamageIncorporatedMod.CAN_ENDERMEN_PLACE_BLOCKS_RULE)) {
+			if (!this.enderman.world.getGameRules().getBoolean(DamageIncorporatedMod.CAN_ENDERMEN_PICK_BLOCKS_RULE)) {
 				cir.setReturnValue(false);
 			}
 		}
