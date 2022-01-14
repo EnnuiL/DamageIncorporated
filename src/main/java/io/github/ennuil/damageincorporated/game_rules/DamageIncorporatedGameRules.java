@@ -83,4 +83,7 @@ public class DamageIncorporatedGameRules {
 	public static GameRules.Key<BooleanRule> CAN_FOXES_PICK_BERRIES_RULE = GameRuleRegistry.register("canFoxesPickBerries", DAMAGE_INCORPORATED_PASSIVE_MOBS_CATEGORY, GameRuleFactory.createBooleanRule(true));
 	public static GameRules.Key<BooleanRule> CAN_FARMER_VILLAGERS_FARM_RULE = GameRuleRegistry.register("canFarmerVillagersFarm", DAMAGE_INCORPORATED_PASSIVE_MOBS_CATEGORY, GameRuleFactory.createBooleanRule(true));
 	public static GameRules.Key<BooleanRule> SNOW_GOLEM_TRAIL_RULE = GameRuleRegistry.register("snowGolemTrail", DAMAGE_INCORPORATED_PASSIVE_MOBS_CATEGORY, GameRuleFactory.createBooleanRule(true));
+
+	// A little trick to initialize all those game rules
+	public DamageIncorporatedGameRules() {}
 }
