@@ -1,0 +1,37 @@
+{
+  "required": true,
+  "package": "io.github.ennuil.damage_incorporated.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "general.LivingEntityMixin",
+    "general.FarmlandBlockMixin",
+    "general.MobEntityMixin",
+    "general.PowderSnowBlockMixin",
+    "general.ProjectileEntityMixin",
+    "general.TurtleEggBlockMixin",
+    "explosions.CreeperEntityMixin",
+    "explosions.FireballEntityMixin",
+    "explosions.WitherEntityMixin",
+    "explosions.WitherSkullEntityMixin",
+    "hostile.CallForHelpGoalMixin",
+    "hostile.CropBlockMixin",
+    "hostile.EnderDragonEntityMixin",
+    "hostile.PickUpBlockGoalMixin",
+    "hostile.PiglinEntityMixin",
+    "hostile.PlaceBlockGoalMixin",
+    "hostile.RavagerEntityMixin",
+    "hostile.SmallFireballEntityMixin",
+    "hostile.WanderAndInfestGoalMixin",
+    "hostile.WololoGoalMixin",
+    "other_mobs.EatCarrotCropGoalMixin",
+    "other_mobs.EatGrassGoalMixin",
+    "other_mobs.FarmerVillagerTaskMixin",
+    "other_mobs.PickBerriesGoalMixin",
+    "other_mobs.SnowGolemEntityMixin",
+    "undead.BreakDoorGoalMixin",
+    "undead.StepAndDestroyBlockGoalMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

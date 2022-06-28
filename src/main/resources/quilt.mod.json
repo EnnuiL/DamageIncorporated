@@ -1,0 +1,41 @@
+{
+	"schema_version": 1,
+	"quilt_loader": {
+		"group": "io.github.ennuil",
+		"id": "damage_incorporated",
+		"version": "${version}",
+		"metadata": {
+			"name": "Damage Incorporated",
+			"description": "Makes the mobGriefing game rule modular by adding many game rules with equivalent functionality.",
+			"contributors": {
+				"Ennui Langeweile": "Owner"
+			},
+			"contact": {
+				"homepage": "https://modrinth.com/mod/damage-incorporated",
+				"issues": "https://github.com/EnnuiL/DamageIncorporated/issues",
+				"sources": "https://github.com/EnnuiL/DamageIncorporated"
+			},
+			"license": "MIT",
+			"icon": "assets/damage_incorporated/icon.png"
+		},
+		"intermediate_mappings": "net.fabricmc:intermediary",
+		"entrypoints": {
+			"init": "io.github.ennuil.damage_incorporated.DamageIncorporatedMod"
+		},
+		"depends": [
+			{
+				"id": "quilt_loader",
+				"versions": ">=0.17.0-"
+			},
+			{
+				"id": "quilted_fabric_api",
+				"versions": ">=2.0.0-"
+			},
+			{
+				"id": "minecraft",
+				"versions": ">=1.19"
+			}
+		]
+	},
+	"mixin": "damage_incorporated.mixins.json"
+}
