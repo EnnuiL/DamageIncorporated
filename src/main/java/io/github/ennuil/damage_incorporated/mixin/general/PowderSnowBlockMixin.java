@@ -12,6 +12,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.llamalad7.mixinextras.injector.WrapWithCondition;
+
 import io.github.ennuil.damage_incorporated.game_rules.DamageIncorporatedGameRules;
 import io.github.ennuil.damage_incorporated.game_rules.DamageIncorporatedEnums.AllowedEntities;
 
@@ -30,26 +32,27 @@ public class PowderSnowBlockMixin {
 		boolean cancelPowderSnowBreak = false;
 		AllowedEntities gameRuleValue = world.getGameRules().get(DamageIncorporatedGameRules.CAN_BURNING_MOBS_BREAK_POWDER_SNOW_RULE).get();
 
-		if (!gameRuleValue.equals(AllowedEntities.OFF)) {
+		if (!gameRuleValue.equals(AllowedEntities.ALL) && !gameRuleValue.equals(AllowedEntities.OFF)) {
 			if (entity.isOnFire()) {
-				if (entity instanceof PlayerEntity) {
-					if (gameRuleValue.equals(AllowedEntities.MOB_ONLY)) {
-						cancelPowderSnowBreak = true;
-					}
-				} else {
-					if (gameRuleValue.equals(AllowedEntities.PLAYER_ONLY)) {
-						cancelPowderSnowBreak = true;
-					}
-				}
+				cancelPowderSnowBreak = gameRuleValue.equals(AllowedEntities.MOB_ONLY) == entity instanceof PlayerEntity;
 			}
 		} else {
-			cancelPowderSnowBreak = entity.canModifyAt(world, pos);
+			cancelPowderSnowBreak = gameRuleValue.equals(AllowedEntities.OFF);
 		}
 
 		// painnnnnnnnnnnnnn
 		if (cancelPowderSnowBreak) {
 			ci.cancel();
+			entity.setOnFire(false);
 		}
-		entity.setOnFire(false);
 	}
+
+	// TODO - i hate switching pcs
+	/*
+	@WrapWithCondition(
+		method = "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V",
+		at = @At("")
+	)
+	private boolean condition() {}
+	*/
 }

@@ -30,9 +30,10 @@ public class ProjectileEntityMixin {
 
 	@ModifyExpressionValue(
 		method = "canModifyAt(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)Z",
-		at = @At(value = "RETURN", ordinal = 0)
+		at = @At(value = "RETURN", shift = At.Shift.BEFORE, ordinal = 0)
 	)
 	private boolean modifyProjectilePlayerCondition(boolean original) {
+		System.out.println(String.format("%s %s", original, original && this.storedGameRuleValue != AllowedEntities.MOB_ONLY && this.storedGameRuleValue != AllowedEntities.OFF));
 		return original && this.storedGameRuleValue != AllowedEntities.MOB_ONLY && this.storedGameRuleValue != AllowedEntities.OFF;
 	}
 
