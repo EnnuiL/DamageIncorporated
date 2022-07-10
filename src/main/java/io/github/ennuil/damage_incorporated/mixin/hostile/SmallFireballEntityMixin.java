@@ -19,11 +19,11 @@ public class SmallFireballEntityMixin extends AbstractFireballEntity {
 	}
 
 	@ModifyArg(
+		method = "onBlockHit(Lnet/minecraft/util/hit/BlockHitResult;)V",
 		at = @At(
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"
-		),
-		method = "onBlockHit(Lnet/minecraft/util/hit/BlockHitResult;)V"
+		)
 	)
 	private Key<BooleanRule> modifyBlazeFireballGameRuleArg(Key<BooleanRule> originalRule) {
 		if (this.world.getGameRules().getBoolean(originalRule)) {

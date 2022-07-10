@@ -18,11 +18,11 @@ public class SnowGolemEntityMixin extends GolemEntity {
 	}
 
 	@Inject(
+		method = "tickMovement()V",
 		at = @At(
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"
 		),
-		method = "tickMovement()V",
 		cancellable = true
 	)
 	private void disableSnowGolemSnowPath(CallbackInfo ci) {

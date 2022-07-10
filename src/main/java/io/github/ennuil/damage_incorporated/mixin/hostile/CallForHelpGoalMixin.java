@@ -18,11 +18,11 @@ public class CallForHelpGoalMixin {
 	private SilverfishEntity silverfish;
 
 	@ModifyArg(
+		method = "tick()V",
 		at = @At(
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"
 		),
-		method = "tick()V",
 		index = 0
 	)
 	private Key<BooleanRule> modifyCallForHelpGameRuleArg(Key<BooleanRule> originalRule) {

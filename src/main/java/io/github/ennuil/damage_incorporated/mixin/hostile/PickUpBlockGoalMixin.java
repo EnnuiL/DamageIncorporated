@@ -17,8 +17,8 @@ public class PickUpBlockGoalMixin {
 	private EndermanEntity enderman;
 
 	@Inject(
-		at = @At("RETURN"),
 		method = "canStart()Z",
+		at = @At("RETURN"),
 		cancellable = true
 	)
 	private void controlEndermanPickUp(CallbackInfoReturnable<Boolean> cir) {

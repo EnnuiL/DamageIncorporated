@@ -17,11 +17,11 @@ public class EatCarrotCropGoalMixin {
 	private RabbitEntity rabbit;
 
 	@Inject(
+		method = "canStart()Z",
 		at = @At(
 			value = "FIELD",
 			target = "Lnet/minecraft/entity/passive/RabbitEntity$EatCarrotCropGoal;hasTarget:Z"
 		),
-		method = "canStart()Z",
 		cancellable = true
 	)
 	private void controlRabbitCarrotEating(CallbackInfoReturnable<Boolean> cir) {

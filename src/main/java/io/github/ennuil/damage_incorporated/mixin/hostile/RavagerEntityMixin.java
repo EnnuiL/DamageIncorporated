@@ -20,11 +20,11 @@ public abstract class RavagerEntityMixin extends RaiderEntity {
 	}
 
 	@ModifyArg(
+		method = "tickMovement",
 		at = @At(
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"
 		),
-		method = "tickMovement",
 		index = 0
 	)
 	private Key<BooleanRule> modifyRavagerLeavesGameRuleArg(Key<BooleanRule> originalRule) {

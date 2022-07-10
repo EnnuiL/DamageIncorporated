@@ -17,25 +17,25 @@ import net.minecraft.world.GameRules.Key;
 @Mixin(FarmerVillagerTask.class)
 public class FarmerVillagerTaskMixin {
 	@Unique
-	private ServerWorld storedServerWorld;
+	private ServerWorld di$storedServerWorld;
 
 	@Inject(
-		at = @At("HEAD"),
-		method = "shouldRun(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/passive/VillagerEntity;)Z"
+		method = "shouldRun(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/passive/VillagerEntity;)Z",
+		at = @At("HEAD")
 	)
 	private void getShouldRunArgs(ServerWorld serverWorld, VillagerEntity villagerEntity, CallbackInfoReturnable<Boolean> cir) {
-		this.storedServerWorld = serverWorld;
+		this.di$storedServerWorld = serverWorld;
 	}
 
 	@ModifyArg(
+		method = "shouldRun(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/passive/VillagerEntity;)Z",
 		at = @At(
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"
-		),
-		method = "shouldRun(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/passive/VillagerEntity;)Z"
+		)
 	)
 	private Key<BooleanRule> modifyFarmerGameRule(Key<BooleanRule> originalRule) {
-		if (this.storedServerWorld.getGameRules().getBoolean(originalRule)) {
+		if (this.di$storedServerWorld.getGameRules().getBoolean(originalRule)) {
 			return DamageIncorporatedGameRules.CAN_FARMER_VILLAGERS_FARM_RULE;
 		}
 		return originalRule;

@@ -2,19 +2,20 @@ package io.github.ennuil.damage_incorporated.mixin.explosions;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-
-import io.github.ennuil.damage_incorporated.game_rules.DamageIncorporatedEnums;
 import io.github.ennuil.damage_incorporated.game_rules.DamageIncorporatedGameRules;
+import io.github.ennuil.damage_incorporated.game_rules.DamageIncorporatedEnums;
 import io.github.ennuil.damage_incorporated.game_rules.DamageIncorporatedEnums.DamageIncDestructionType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import net.minecraft.world.GameRules.BooleanRule;
+import net.minecraft.world.GameRules.Key;
 
 @Mixin(WitherEntity.class)
 public class WitherEntityMixin extends HostileEntity {
@@ -26,7 +27,7 @@ public class WitherEntityMixin extends HostileEntity {
 		method = "mobTick()V",
 		at = @At(
 			value = "INVOKE",
-			target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;DDDFZLnet/minecraft/world/explosion/Explosion$DestructionType;)Lnet/minecraft/world/explosion/Explosion;"
+			target = "net/minecraft/world/World.createExplosion(Lnet/minecraft/entity/Entity;DDDFZLnet/minecraft/world/explosion/Explosion$DestructionType;)Lnet/minecraft/world/explosion/Explosion;"
 		)
 	)
 	private void modifyWitherSpawnExplosion(Args args) {
@@ -39,15 +40,18 @@ public class WitherEntityMixin extends HostileEntity {
 		}
 	}
 
-	@ModifyExpressionValue(
+	@ModifyArg(
 		method = "mobTick()V",
 		at = @At(
 			value = "INVOKE",
-			target = "Lnet/minecraft/world/GameRules;getBoolean(Lnet/minecraft/world/GameRules$Key;)Z",
+			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z",
 			ordinal = 1
 		)
 	)
-	private boolean modifyWitherGameRuleCondition(boolean original) {
-		return this.world.getGameRules().getBoolean(DamageIncorporatedGameRules.CAN_WITHER_BREAK_BLOCKS_RULE) && original;
+	private Key<BooleanRule> modifyWitherGameRuleArg(Key<BooleanRule> originalRule) {
+		if (this.world.getGameRules().getBoolean(originalRule)) {
+			return DamageIncorporatedGameRules.CAN_WITHER_BREAK_BLOCKS_RULE;
+		}
+		return originalRule;
 	}
 }

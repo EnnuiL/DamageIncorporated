@@ -1,47 +1,71 @@
+
 package io.github.ennuil.damage_incorporated.mixin.general;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-
 import io.github.ennuil.damage_incorporated.game_rules.DamageIncorporatedGameRules;
 import io.github.ennuil.damage_incorporated.game_rules.DamageIncorporatedEnums.AllowedEntities;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
-// FIXME - This is broken
+// I don't like this mixin at all, but oh well
 @Mixin(ProjectileEntity.class)
-public class ProjectileEntityMixin {
+public abstract class ProjectileEntityMixin {
 	@Unique
-	private AllowedEntities storedGameRuleValue;
+	private AllowedEntities di$storedGameRuleValue;
+
+	@Shadow
+	public abstract Entity getOwner();
 
 	@Inject(
-		at = @At("HEAD"),
-		method = "canModifyAt(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)Z"
+		method = "canModifyAt(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)Z",
+		at = @At("HEAD")
 	)
 	private void getCanModifyAtArgs(World world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-		this.storedGameRuleValue = world.getGameRules().get(DamageIncorporatedGameRules.CAN_BURNING_PROJECTILES_MODIFY_BLOCKS_RULE).get();
+		this.di$storedGameRuleValue = world.getGameRules().get(DamageIncorporatedGameRules.CAN_BURNING_PROJECTILES_MODIFY_BLOCKS_RULE).get();
 	}
 
-	@ModifyExpressionValue(
+	@Inject(
 		method = "canModifyAt(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)Z",
-		at = @At(value = "RETURN", shift = At.Shift.BEFORE, ordinal = 0)
+		at = @At(
+			value = "RETURN",
+			ordinal = 0
+		),
+		cancellable = true
 	)
-	private boolean modifyProjectilePlayerCondition(boolean original) {
-		System.out.println(String.format("%s %s", original, original && this.storedGameRuleValue != AllowedEntities.MOB_ONLY && this.storedGameRuleValue != AllowedEntities.OFF));
-		return original && this.storedGameRuleValue != AllowedEntities.MOB_ONLY && this.storedGameRuleValue != AllowedEntities.OFF;
+	private void modifyPlayerProjectileReturnValue(World world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
+		switch (this.di$storedGameRuleValue) {
+			case MOB_ONLY -> cir.setReturnValue(false);
+			case OFF -> cir.setReturnValue(false);
+			default -> {}
+		}
 	}
 
-	@ModifyExpressionValue(
+	@Inject(
 		method = "canModifyAt(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)Z",
-		at = @At(value = "RETURN", ordinal = 1)
+		at = @At(
+			value = "RETURN",
+			ordinal = 1
+		),
+		cancellable = true
 	)
-	private boolean modifyProjectileGenericCondition(boolean original) {
-		return original && this.storedGameRuleValue != AllowedEntities.PLAYER_ONLY && this.storedGameRuleValue != AllowedEntities.OFF;
+	private void modifyProjectileReturnValue(World world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
+		Entity entity = this.getOwner();
+
+		switch (this.di$storedGameRuleValue) {
+			case PLAYER_ONLY -> cir.setReturnValue(false);
+			case MOB_ONLY -> cir.setReturnValue((entity == null || world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) && !(entity instanceof PlayerEntity));
+			case OFF -> cir.setReturnValue(entity == null);
+			default -> {}
+		}
 	}
 }

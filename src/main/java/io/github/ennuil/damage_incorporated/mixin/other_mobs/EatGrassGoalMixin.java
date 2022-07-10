@@ -19,12 +19,12 @@ public class EatGrassGoalMixin {
 	private World world;
 
 	@ModifyArg(
+		method = "tick()V",
 		at = @At(
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z",
 			ordinal = 0
-		),
-		method = "tick()V"
+		)
 	)
 	private Key<BooleanRule> modifyGrassGameRule(Key<BooleanRule> originalRule) {
 		if (this.world.getGameRules().getBoolean(originalRule)) {
@@ -34,12 +34,12 @@ public class EatGrassGoalMixin {
 	}
 
 	@ModifyArg(
+		method = "tick()V",
 		at = @At(
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z",
 			ordinal = 1
-		),
-		method = "tick()V"
+		)
 	)
 	private Key<BooleanRule> modifyGrassBlockGameRule(Key<BooleanRule> originalRule) {
 		if (this.world.getGameRules().getBoolean(originalRule)) {

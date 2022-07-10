@@ -17,11 +17,11 @@ public class WanderAndInfestGoalMixin extends WanderAroundGoal {
 	}
 
 	@ModifyArg(
+		method = "canStart()Z",
 		at = @At(
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"
-		),
-		method = "canStart()Z"
+		)
 	)
 	private Key<BooleanRule> modifySilverfishGameRuleArg(Key<BooleanRule> originalRule) {
 		if (this.mob.world.getGameRules().getBoolean(originalRule)) {

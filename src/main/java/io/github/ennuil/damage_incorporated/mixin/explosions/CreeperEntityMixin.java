@@ -26,39 +26,39 @@ public class CreeperEntityMixin extends HostileEntity {
 	}
 
 	@Unique
-	private DamageIncDestructionType storedCreeperGameRuleValue;
+	private DamageIncDestructionType di$storedCreeperGameRuleValue;
 
 	@Unique
-	private DamageIncDestructionType storedChargedCreeperGameRuleValue;
+	private DamageIncDestructionType di$storedChargedCreeperGameRuleValue;
 
 	@Inject(
-		at = @At("HEAD"),
-		method = "explode()V"
+		method = "explode()V",
+		at = @At("HEAD")
 	)
 	private void getCreeperGameRuleValues(CallbackInfo ci) {
-		this.storedCreeperGameRuleValue = this.world.getGameRules().get(DamageIncorporatedGameRules.CREEPER_DESTRUCTION_TYPE_RULE).get();
-		this.storedChargedCreeperGameRuleValue = this.world.getGameRules().get(DamageIncorporatedGameRules.CHARGED_CREEPER_DESTRUCTION_TYPE_RULE).get();
+		this.di$storedCreeperGameRuleValue = this.world.getGameRules().get(DamageIncorporatedGameRules.CREEPER_DESTRUCTION_TYPE_RULE).get();
+		this.di$storedChargedCreeperGameRuleValue = this.world.getGameRules().get(DamageIncorporatedGameRules.CHARGED_CREEPER_DESTRUCTION_TYPE_RULE).get();
 	}
 
 	@ModifyArgs(
+		method = "explode()V",
 		at = @At(
 			value = "INVOKE",
 			target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;DDDFLnet/minecraft/world/explosion/Explosion$DestructionType;)Lnet/minecraft/world/explosion/Explosion;"
-		),
-		method = "explode()V"
+		)
 	)
 	private void modifyCreeperExplosion(Args args) {
 		if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
 			if (!this.isOverlayConditionMet()) {
-				if (this.storedCreeperGameRuleValue.equals(DamageIncDestructionType.NONE)) {
+				if (this.di$storedCreeperGameRuleValue.equals(DamageIncDestructionType.NONE)) {
 					args.set(4, 0.0F);
 				}
-				args.set(5, DamageIncorporatedEnums.translateDestructionType(this.storedCreeperGameRuleValue));
+				args.set(5, DamageIncorporatedEnums.translateDestructionType(this.di$storedCreeperGameRuleValue));
 			} else {
-				if (this.storedChargedCreeperGameRuleValue.equals(DamageIncDestructionType.NONE)) {
+				if (this.di$storedChargedCreeperGameRuleValue.equals(DamageIncDestructionType.NONE)) {
 					args.set(4, 0.0F);
 				}
-				args.set(5, DamageIncorporatedEnums.translateDestructionType(this.storedChargedCreeperGameRuleValue));
+				args.set(5, DamageIncorporatedEnums.translateDestructionType(this.di$storedChargedCreeperGameRuleValue));
 			}
 		}
 	}

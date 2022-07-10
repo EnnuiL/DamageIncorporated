@@ -19,11 +19,11 @@ public class EnderDragonEntityMixin extends MobEntity {
 	}
 
 	@ModifyArg(
+		method = "destroyBlocks(Lnet/minecraft/util/math/Box;)Z",
 		at = @At(
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"
-		),
-		method = "destroyBlocks(Lnet/minecraft/util/math/Box;)Z"
+		)
 	)
 	private Key<BooleanRule> modifyEnderDragonGameRuleArg(Key<BooleanRule> originalRule) {
 		if (this.world.getGameRules().getBoolean(originalRule)) {

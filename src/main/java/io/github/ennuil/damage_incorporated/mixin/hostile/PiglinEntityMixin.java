@@ -19,8 +19,8 @@ public abstract class PiglinEntityMixin extends AbstractPiglinEntity {
 	}
 
 	@Inject(
-		at = @At("RETURN"),
 		method = "canGather(Lnet/minecraft/item/ItemStack;)Z",
+		at = @At("RETURN"),
 		cancellable = true
 	)
 	private void controlPiglinGather(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {

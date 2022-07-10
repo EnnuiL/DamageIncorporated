@@ -16,11 +16,11 @@ public class PickBerriesGoalMixin {
 	private FoxEntity field_17975;
 
 	@ModifyArg(
+		method = "pickFromTargetPos()V",
 		at = @At(
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"
-		),
-		method = "pickFromTargetPos()V"
+		)
 	)
 	private Key<BooleanRule> modifyFoxGoalsGameRuleArg(Key<BooleanRule> originalRule) {
 		if (field_17975.world.getGameRules().getBoolean(originalRule)) {

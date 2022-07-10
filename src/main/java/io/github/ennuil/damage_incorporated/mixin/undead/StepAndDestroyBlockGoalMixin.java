@@ -21,11 +21,11 @@ public class StepAndDestroyBlockGoalMixin {
 	private MobEntity stepAndDestroyMob;
 
 	@ModifyArg(
+		method = "canStart()Z",
 		at = @At(
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"
 		),
-		method = "canStart()Z",
 		index = 0
 	)
 	private Key<BooleanRule> modifyStepAndDestroyGameRuleArg(Key<BooleanRule> originalRule) {

@@ -16,11 +16,11 @@ public abstract class WololoGoalMixin {
 	private EvokerEntity field_7268;
 
 	@ModifyArg(
+		method = "canStart()Z",
 		at = @At(
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"
-		),
-		method = "canStart()Z"
+		)
 	)
 	private Key<BooleanRule> modifyWololoGameRuleArg(Key<BooleanRule> originalRule) {
 		if (field_7268.world.getGameRules().getBoolean(originalRule)) {

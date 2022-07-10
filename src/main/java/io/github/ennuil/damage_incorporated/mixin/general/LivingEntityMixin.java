@@ -19,11 +19,11 @@ public abstract class LivingEntityMixin extends Entity {
 	}
 
 	@ModifyArg(
+		method = "onKilledBy(Lnet/minecraft/entity/LivingEntity;)V",
 		at = @At(
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"
-		),
-		method = "onKilledBy(Lnet/minecraft/entity/LivingEntity;)V"
+		)
 	)
 	private Key<BooleanRule> modifyWitherRoseGameRuleArg(Key<BooleanRule> originalRule) {
 		if (this.world.getGameRules().getBoolean(originalRule)) {

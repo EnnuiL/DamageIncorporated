@@ -19,12 +19,12 @@ public abstract class MobEntityMixin extends LivingEntity {
 	}
 
 	@ModifyArg(
+		method = "tickMovement()V",
 		at = @At(
 			value = "INVOKE",
 			target = "net/minecraft/world/GameRules.getBoolean(Lnet/minecraft/world/GameRules$Key;)Z",
 			ordinal = 0
-		),
-		method = "tickMovement()V"
+		)
 	)
 	private Key<BooleanRule> modifyMobPickUpGameRuleArg(Key<BooleanRule> originalRule) {
 		if (this.world.getGameRules().getBoolean(originalRule)) {

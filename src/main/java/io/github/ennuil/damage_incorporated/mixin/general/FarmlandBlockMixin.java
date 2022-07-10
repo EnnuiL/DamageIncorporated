@@ -21,22 +21,22 @@ import net.minecraft.world.World;
 @Mixin(FarmlandBlock.class)
 public class FarmlandBlockMixin {
 	@Unique
-	private AllowedEntities storedGameRuleValue;
+	private AllowedEntities di$storedGameRuleValue;
 
 	@Inject(
-		at = @At("HEAD"),
-		method = "onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V"
+		method = "onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V",
+		at = @At("HEAD")
 	)
 	private void getOnLandedUponArgs(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
-		this.storedGameRuleValue = world.getGameRules().get(DamageIncorporatedGameRules.FARMLAND_TRAMPLING_RULE).get();
+		this.di$storedGameRuleValue = world.getGameRules().get(DamageIncorporatedGameRules.FARMLAND_TRAMPLING_RULE).get();
 	}
 
 	@ModifyConstant(
-		constant = @Constant(classValue = LivingEntity.class),
-		method = "onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V"
+		method = "onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V",
+		constant = @Constant(classValue = LivingEntity.class)
 	)
 	private Class<?> modifyFarmlandEntityConstant(Object object, Class<?> originalClass) {
-		return switch (this.storedGameRuleValue) {
+		return switch (this.di$storedGameRuleValue) {
 			case PLAYER_ONLY -> PlayerEntity.class;
 			case MOB_ONLY -> {
 				if (object instanceof PlayerEntity) {
@@ -51,11 +51,10 @@ public class FarmlandBlockMixin {
 	}
 
 	@ModifyConstant(
-		constant = @Constant(classValue = PlayerEntity.class),
-		method = "onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V"
-	)
+		method = "onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V",
+		constant = @Constant(classValue = PlayerEntity.class))
 	private Class<?> modifyFarmlandPlayerConstant(Object object, Class<?> originalClass) {
-		return switch (this.storedGameRuleValue) {
+		return switch (this.di$storedGameRuleValue) {
 			case MOB_ONLY -> Integer.class;
 			default -> originalClass;
 		};

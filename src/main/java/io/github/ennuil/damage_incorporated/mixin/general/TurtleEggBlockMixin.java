@@ -19,22 +19,22 @@ import net.minecraft.world.World;
 @Mixin(TurtleEggBlock.class)
 public class TurtleEggBlockMixin {
 	@Unique
-	private AllowedEntities storedGameRuleValue;
+	private AllowedEntities di$storedGameRuleValue;
 
 	@Inject(
-		at = @At("HEAD"),
-		method = "breaksEgg(Lnet/minecraft/world/World;Lnet/minecraft/entity/Entity;)Z"
+		method = "breaksEgg(Lnet/minecraft/world/World;Lnet/minecraft/entity/Entity;)Z",
+		at = @At("HEAD")
 	)
 	private void getBreaksEggArgs(World world, Entity entity, CallbackInfoReturnable<Boolean> cir) {
-		this.storedGameRuleValue = world.getGameRules().get(DamageIncorporatedGameRules.TURTLE_EGG_TRAMPLING_RULE).get();
+		this.di$storedGameRuleValue = world.getGameRules().get(DamageIncorporatedGameRules.TURTLE_EGG_TRAMPLING_RULE).get();
 	}
 
 	@ModifyConstant(
-		constant = @Constant(classValue = LivingEntity.class),
-		method = "breaksEgg(Lnet/minecraft/world/World;Lnet/minecraft/entity/Entity;)Z"
+		method = "breaksEgg(Lnet/minecraft/world/World;Lnet/minecraft/entity/Entity;)Z",
+		constant = @Constant(classValue = LivingEntity.class)
 	)
 	private Class<?> modifyTurtleEggEntityConstant(Object object, Class<?> originalClass) {
-		return switch (this.storedGameRuleValue) {
+		return switch (this.di$storedGameRuleValue) {
 			case PLAYER_ONLY -> PlayerEntity.class;
 			case MOB_ONLY -> {
 				if (object instanceof PlayerEntity) {
@@ -49,11 +49,11 @@ public class TurtleEggBlockMixin {
 	}
 
 	@ModifyConstant(
-		constant = @Constant(classValue = PlayerEntity.class),
-		method = "breaksEgg(Lnet/minecraft/world/World;Lnet/minecraft/entity/Entity;)Z"
+		method = "breaksEgg(Lnet/minecraft/world/World;Lnet/minecraft/entity/Entity;)Z",
+		constant = @Constant(classValue = PlayerEntity.class)
 	)
 	private Class<?> modifyTurtleEggPlayerConstant(Object object, Class<?> originalClass) {
-		return switch (this.storedGameRuleValue) {
+		return switch (this.di$storedGameRuleValue) {
 			case MOB_ONLY -> Integer.class;
 			default -> originalClass;
 		};

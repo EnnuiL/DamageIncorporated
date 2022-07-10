@@ -22,11 +22,11 @@ public class FireballEntityMixin extends AbstractFireballEntity {
 	}
 
 	@ModifyArgs(
+		method = "onCollision(Lnet/minecraft/util/hit/HitResult;)V",
 		at = @At(
 			value = "INVOKE",
 			target = "Lnet/minecraft/world/World;createExplosion(Lnet/minecraft/entity/Entity;DDDFZLnet/minecraft/world/explosion/Explosion$DestructionType;)Lnet/minecraft/world/explosion/Explosion;"
-		),
-		method = "onCollision(Lnet/minecraft/util/hit/HitResult;)V"
+		)
 	)
 	private void modifyGhastFireballExplosion(Args args) {
 		if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {

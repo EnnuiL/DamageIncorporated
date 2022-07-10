@@ -12,8 +12,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.llamalad7.mixinextras.injector.WrapWithCondition;
-
 import io.github.ennuil.damage_incorporated.game_rules.DamageIncorporatedGameRules;
 import io.github.ennuil.damage_incorporated.game_rules.DamageIncorporatedEnums.AllowedEntities;
 
@@ -21,11 +19,11 @@ import io.github.ennuil.damage_incorporated.game_rules.DamageIncorporatedEnums.A
 public class PowderSnowBlockMixin {
 	// I really don't like doing this, but well, at least it isn't a @Redirect
 	@Inject(
+		method = "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V",
 		at = @At(
 			value = "INVOKE",
 			target = "Lnet/minecraft/entity/Entity;isOnFire()Z"
 		),
-		method = "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V",
 		cancellable = true
 	)
 	private void cancelIfStatement(BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo ci) {
@@ -46,13 +44,4 @@ public class PowderSnowBlockMixin {
 			entity.setOnFire(false);
 		}
 	}
-
-	// TODO - i hate switching pcs
-	/*
-	@WrapWithCondition(
-		method = "onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;)V",
-		at = @At("")
-	)
-	private boolean condition() {}
-	*/
 }
